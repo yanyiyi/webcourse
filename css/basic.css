@@ -1,17 +1,17 @@
 #oneTable .tname{
     color: dodgerblue;
-    font-size: 0.5em;
+    font-size: 0.75em;
 }
 #twoTable .tname{
     color: darkseagreen; 
-    font-size: 0.5em;
+    font-size: 0.75em;
 }
 .cname{
      font-size: 1em;
 }
 td,th{
       width:16.7%;
-    height: 4em;  
+    height: 3em;  
 text-align: center;
 }
 
