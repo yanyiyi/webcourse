@@ -116,65 +116,15 @@
                     
                    
 
-                    if (Cclass == aryPara["class2ID"] || classTeacher == aryPara["teacher2ID"]){
+                    if ( className == aryPara["course"]){
+                        
                         if (whichSec > secCount) {
                         secCount = whichSec;
-                    }
-                        if (aryPara["class2ID"] != null || aryPara["teacher2ID"] != null) {
-                            if (aryPara["class2ID"] != null) {
-
-                                if (cc2 == 0) {
-                                    $("#twoTable .tTitle").append(aryPara["class2ID"] + "的班級課表");
-                                    
-                                    cc2++;
-                                }
-
-                                $("#twoTable ." +whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?class2ID=" + aryPara["class2ID"] + "&teacherID=" + classTeacher + "'>" + classTeacher + "</a></span>");
-
-                            } else if (aryPara["teacher2ID"] != null) {
-
-                                if (cc2 == 0) {
-                                    $("#twoTable .tTitle").append(aryPara["teacher2ID"] + "的教師課表");
-                                    
-                                    cc2++;
-                                }
-
-                                $("#twoTable ." +whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?teacher2ID=" + aryPara["teacher2ID"] + "&classID=" + Cclass + "'>" + Cclass + "</span>");
-                                
-                            }
-
                         }
-
+                        
+                        
                     }
-                    if (Cclass == aryPara["classID"] || classTeacher == aryPara["teacherID"]) {
-                        if (whichSec > secCount) {
-                        secCount = whichSec;
-                    }
-                        if (aryPara["classID"] != null || aryPara["teacherID"] != null) {
-                            if (aryPara["classID"] != null) {
-                                if (cc == 0) {
-                                    $("#oneTable .tTitle").append(aryPara["classID"] + "的班級課表");
-                                    cc++;
-                                }
-                                
-                                
-                                $("#oneTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?classID=" + aryPara["classID"] + "&teacher2ID=" + classTeacher + "'>" + classTeacher + "</a></span>");
-
-                            } else if (aryPara["teacherID"] != null) {
-
-
-                                if (cc == 0) {
-                                    $("#oneTable .tTitle").append(aryPara["teacherID"] + "的教師課表");
-                                    
-                                    cc++;
-                                }
-                               
-                                $("#oneTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?teacherID=" + aryPara["teacherID"] + "&class2ID=" + Cclass + "'>" + Cclass + "</span>");
-                                
-                            }
-
-
-                        }
+                    
 
 
                     }

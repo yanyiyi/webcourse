@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>課表查詢雙視窗</title>
+    <link rel=stylesheet href="./css/basic.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
+    <script>
+        var strUrl = decodeURIComponent(location.search);
+  var getPara, ParaVal;
+  var aryPara = [];
+ 
+  if (strUrl.indexOf("?") != -1) {
+    var getSearch = strUrl.split("?");
+    getPara = getSearch[1].split("&");
+    for (i = 0; i < getPara.length; i++) {
+      ParaVal = getPara[i].split("=");
+      aryPara.push(ParaVal[0]);
+      aryPara[ParaVal[0]] = ParaVal[1];
+    }
+  }  
+        
+        
+    $.ajax({
+    url:'./ClassProcessing.xml',
+    type: 'GET',
+    dataType: 'xml',//資料型態可以不設定，且此型態不可是text或html
+    timeout: 1000,
+    error: function(xml){
+        alert('讀取xml錯誤'+xml); //當xml讀取失敗
+    },
+    success: function(xml){
+      $(xml).find("ClassList").each(function(i){  //取得xml父節點       
+        var total=$(xml).find("ClassList").length;//xml的總筆數
+		var classDay=$(this).children("Cday").text(); 
+		var classSec=$(this).children("Csection").text(); 
+        var classTeacher=$(this).children("Cteacher").text();
+        var className=$(this).children("className").text();
+        var Cclass=$(this).children("Cclass").text();
+        var whichClass = "t";
+        var whichDay = "1";
+        var whichSec = "1";
+          if (Cclass == aryPara["classID"]){
+		    switch(classDay){
+                case "週一":
+                 whichDay = 1;   
+                
+                    break;
+                case "週二":      
+                whichDay = 2;
+                    break;
+                case "週三":      
+                whichDay = 3;  
+                    break;
+                case "週四":      
+                whichDay = 4; 
+                    break;
+                case "週五":      
+                whichDay = 5;  
+                    break;
+            }
+            whichClass = whichClass.concat(whichDay);
+            switch(classSec){
+                case "第一節":
+                 whichSec = 1;   
+                    break;
+                case "第二節":      
+                whichSec = 2;  
+                    break;
+                case "第三節":      
+               whichSec = 3;  
+                    break;
+                case "第四節":      
+                whichSec = 4;  
+                    break;
+                case "第五節":      
+                whichSec = 5;    
+                    break;
+                case "第六節":      
+                whichSec = 6;    
+                    break;
+                case "第七節":      
+                whichSec = 7;    
+                    break;
+                case "第八節":      
+                whichSec = 8;    
+                    break;
+            }
+              
+             whichClass = whichClass.concat(whichSec);
+              console.log(whichClass);
+              
+              $("#"+whichClass).append( "<span class='tname'>"+classTeacher +"</span><br><span class='cname'>"+ className +"</span>");
+          }
+                    
+                    
+      })
+    }
+    })
+    </script>
+</head>
+<body>
+
+<table>
+<tr>
+    <th id="t00">節/周</th>
+    <th id="t01">一</th>
+    <th id="t02">二</th>
+    <th id="t03">三</th>
+<th id="t04">四</th>
+<th id="t05">五</th>
+</tr>
+<tr>
+    <td id="t10">1</td>
+     <td id="t11"></td>
+      <td id="t12"></td>
+       <td id="t13"></td>
+        <td id="t14"></td>
+         <td id="t15"></td>
+</tr>
+
+<tr>
+    <td id="t20">2</td>
+     <td id="t21"></td>
+      <td id="t22"></td>
+       <td id="t23"></td>
+        <td id="t24"></td>
+         <td id="t25"></td>
+</tr>
+        <tr>
+    <td id="t30">3</td>
+     <td id="t31"></td>
+      <td id="t32"></td>
+       <td id="t33"></td>
+        <td id="t34"></td>
+         <td id="t35"></td>
+</tr>
+               <tr>
+    <td id="t40">4</td>
+     <td id="t41"></td>
+      <td id="t42"></td>
+       <td id="t43"></td>
+        <td id="t44"></td>
+         <td id="t45"></td>
+</tr>
+               <tr>
+    <td id="t50">5</td>
+     <td id="t51"></td>
+      <td id="t52"></td>
+       <td id="t53"></td>
+        <td id="t54"></td>
+         <td id="t55"></td>
+</tr>
+               <tr>
+    <td id="t60">6</td>
+     <td id="t61"></td>
+      <td id="t62"></td>
+       <td id="t63"></td>
+        <td id="t64"></td>
+         <td id="t65"></td>
+</tr>
+               <tr>
+    <td id="t70">7</td>
+     <td id="t71"></td>
+      <td id="t72"></td>
+       <td id="t73"></td>
+        <td id="t74"></td>
+         <td id="t75"></td>
+</tr>
+        
+            
+</table>
+
+</body>
+</html>

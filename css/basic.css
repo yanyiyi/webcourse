@@ -19,7 +19,7 @@ td,th{
       width:16.7%;
     height: 3em;  
 text-align: center;
-    border: solid #FFF 1px;
+    border: solid rgba(255,255,255,0.80) 1px;
     background-color: rgba(255,255,255,0.75);
     margin: 3px;
 }
@@ -37,9 +37,10 @@ text-align: center;
 }
 #twoTable, #oneTable
 {
-    width:45%;
+    width: 45%;
     float: left;
     margin: 2.5%;
+    display: none;
 }
 table{
     width: 100%;
@@ -47,13 +48,17 @@ table{
 }
 html{
     width: 100%;
-    height: 100%;   
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
 }
 body{
     width: 100%;
     height: 100%;
     background-image: url(../img/DSC08240-01.jpg);
     background-size: cover;
+    padding: 0px;
+    margin: 0px;
 }
 td:hover{
     background-color: rgba(255,255,255,0.95); 
@@ -61,4 +66,11 @@ td:hover{
 h1{
     font-size: 1.5em;
     color: aliceblue;
+}
+
+@media screen and (max-width:720px){
+    #twoTable,#oneTable{
+        width:94%;
+        margin: 0 3%;
+    }       
 }
