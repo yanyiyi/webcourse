@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CClist>
+<ClassList>
+
+	<Cid>1</Cid>
+	<Cday>週一</Cday>
+	<Csection>第一節</Csection>
+	<Cclass>一忠班</Cclass>
+	<tid>3</tid>
+	<Cteacher>黃竹君</Cteacher>
+	<className>國文</className>
+</ClassList>
+<ClassList>	
+	<Cid>2</Cid>
+	<Cday>週一</Cday>
+	<Csection>第二節</Csection>
+	<Cclass>一忠班</Cclass>
+	<tid>3</tid>
+	<Cteacher>黃竹君</Cteacher>
+	<className>國文</className>
+</ClassList>	
+<ClassList>	
+	<Cid>3</Cid>
+	<Cday>週二</Cday>
+	<Csection>第七節</Csection>
+	<Cclass>一忠班</Cclass>
+	<tid>3</tid>
+	<Cteacher>黃竹君</Cteacher>
+	<className>國文</className>
+						</ClassList>	
+						</CClist>
