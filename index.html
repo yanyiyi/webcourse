@@ -9,7 +9,9 @@
         var strUrl = decodeURIComponent(location.search);
   var getPara, ParaVal;
   var aryPara = [];
- 
+var cc,cc2;
+        cc=0;
+        cc2=0;
   if (strUrl.indexOf("?") != -1) {
     var getSearch = strUrl.split("?");
     getPara = getSearch[1].split("&");
@@ -20,6 +22,22 @@
     }
 
   }  
+    
+    if( aryPara["classID"] != null) { 
+    }
+        
+    if( aryPara["teacherID"] != null) {
+        $("#oneTable .tTitle").append( aryPara["teacherID"]+ "的教師課表");}
+        
+    if( aryPara["class2ID"] != null ) { 
+        $("#oneTable .tTitle").append( aryPara["class2ID"]+ "的班級課表");
+        
+    }
+        
+    if( aryPara["teacher2ID"] != null) {
+        $("#twoTable .tTitle").append( aryPara["teacher2ID"]+ "的教師課表");
+    
+    } 
         
         
     $.ajax({
@@ -91,12 +109,18 @@
              whichClass = whichClass.concat(whichSec);
           
         if( Cclass == aryPara["class2ID"] || classTeacher == aryPara["teacher2ID"] ){
-         if(tagEXE <1 && aryPara["class2ID"] != null || aryPara["teacher2ID"] != null){
+         if( aryPara["class2ID"] != null || aryPara["teacher2ID"] != null){
                        if (aryPara["class2ID"] != null){
-                        $("#twoTable ."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'>"+ classTeacher  +"</span>");
+                           
+                           if(cc2==0){$("#twoTable .tTitle").append( aryPara["class2ID"] + "的班級課表"); cc2++;}
+                           
+                        $("#twoTable ."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'><a href='./?class2ID="+aryPara["class2ID"]+"&teacherID="+ classTeacher +"'>"+ classTeacher +"</a></span>");
 
                       }else if(aryPara["teacher2ID"] != null){
-                      $("#twoTable ."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'>"+ Cclass  +"</span>");
+                          
+                          if(cc2==0){$("#twoTable .tTitle").append( aryPara["teacher2ID"] + "的教師課表"); cc2++;}
+                          
+                      $("#twoTable ."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'><a href='./?teacher2ID="+ aryPara["teacher2ID"] +"&classID="+ Cclass  +"'>"+ Cclass  +"</span>");
                           }
                    
                   }
@@ -104,14 +128,24 @@
           }
           if (Cclass == aryPara["classID"] || classTeacher == aryPara["teacherID"] ){
 		    
-              if(tagEXE <1 && aryPara["classID"] != null || aryPara["teacherID"] != null){
-                      if (aryPara["classID"] != null){
-                        $("#oneTable ."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'>"+ classTeacher  +"</span>");
+              if( aryPara["classID"] != null || aryPara["teacherID"] != null){
+                      
+                  if (aryPara["classID"] != null){
+                              
+                      if(cc==0){$("#oneTable .tTitle").append( aryPara["classID"] + "的班級課表"); cc++;}
+
+                      
+                        $("#oneTable ."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'><a href='./?classID="+aryPara["classID"]+"&teacher2ID="+ classTeacher +"'>"+ classTeacher +"</a></span>");
 
                       }else if(aryPara["teacherID"] != null){
-                      $("#oneTable ."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'>"+ Cclass  +"</span>");
+                          
+                          
+                          if(cc==0){$("#oneTable .tTitle").append( aryPara["teacherID"] + "的教師課表"); cc++;}
+                          
+                      $("#oneTable ."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'><a href='./?teacherID="+ aryPara["teacherID"] +"&class2ID="+ Cclass  +"'>"+ Cclass  +"</span>");
                           }
-                 
+                  
+                  
             }
               
               
@@ -121,12 +155,16 @@
                     
       })
     }
+       
+        
     })
+
     </script>
 </head>
 <body>
 
 <div id="oneTable">
+<h1 class="tTitle"></h1>
 <table>
 <tr>
     <th class="t00">節/周</th>
@@ -137,7 +175,7 @@
 <th class="t05">五</th>
 </tr>
 <tr>
-    <td class="t10">1</td>
+    <th class="t10">1</th>
      <td class="t11"></td>
       <td class="t12"></td>
        <td class="t13"></td>
@@ -146,7 +184,7 @@
 </tr>
 
 <tr>
-    <td class="t20">2</td>
+    <th class="t20">2</th>
      <td class="t21"></td>
       <td class="t22"></td>
        <td class="t23"></td>
@@ -154,7 +192,7 @@
          <td class="t25"></td>
 </tr>
         <tr>
-    <td class="t30">3</td>
+    <th class="t30">3</th>
      <td class="t31"></td>
       <td class="t32"></td>
        <td class="t33"></td>
@@ -162,7 +200,7 @@
          <td class="t35"></td>
 </tr>
                <tr>
-    <td class="t40">4</td>
+    <th class="t40">4</th>
      <td class="t41"></td>
       <td class="t42"></td>
        <td class="t43"></td>
@@ -170,7 +208,7 @@
          <td class="t45"></td>
 </tr>
                <tr>
-    <td class="t50">5</td>
+    <th class="t50">5</th>
      <td class="t51"></td>
       <td class="t52"></td>
        <td class="t53"></td>
@@ -178,7 +216,7 @@
          <td class="t55"></td>
 </tr>
                <tr>
-    <td class="t60">6</td>
+    <th class="t60">6</th>
      <td class="t61"></td>
       <td class="t62"></td>
        <td class="t63"></td>
@@ -186,19 +224,27 @@
          <td class="t65"></td>
 </tr>
                <tr>
-    <td class="t70">7</td>
+    <th class="t70">7</th>
      <td class="t71"></td>
       <td class="t72"></td>
        <td class="t73"></td>
         <td class="t74"></td>
          <td class="t75"></td>
 </tr>
-        
+          <tr>
+    <th class="t80">8</th>
+     <td class="t81"></td>
+      <td class="t82"></td>
+       <td class="t83"></td>
+        <td class="t84"></td>
+         <td class="t85"></td>
+</tr>                
             
 </table>
 
 </div>
 <div id="twoTable">
+<h1 class="tTitle"></h1>
 <table>
 <tr>
     <th class="t00">節/周</th>
@@ -209,7 +255,7 @@
 <th class="t05">五</th>
 </tr>
 <tr>
-    <td class="t10">1</td>
+    <th class="t10">1</th>
      <td class="t11"></td>
       <td class="t12"></td>
        <td class="t13"></td>
@@ -218,7 +264,7 @@
 </tr>
 
 <tr>
-    <td class="t20">2</td>
+    <th class="t20">2</th>
      <td class="t21"></td>
       <td class="t22"></td>
        <td class="t23"></td>
@@ -226,7 +272,7 @@
          <td class="t25"></td>
 </tr>
         <tr>
-    <td class="t30">3</td>
+    <th class="t30">3</th>
      <td class="t31"></td>
       <td class="t32"></td>
        <td class="t33"></td>
@@ -234,7 +280,7 @@
          <td class="t35"></td>
 </tr>
                <tr>
-    <td class="t40">4</td>
+    <th class="t40">4</th>
      <td class="t41"></td>
       <td class="t42"></td>
        <td class="t43"></td>
@@ -242,7 +288,7 @@
          <td class="t45"></td>
 </tr>
                <tr>
-    <td class="t50">5</td>
+    <th class="t50">5</th>
      <td class="t51"></td>
       <td class="t52"></td>
        <td class="t53"></td>
@@ -250,7 +296,7 @@
          <td class="t55"></td>
 </tr>
                <tr>
-    <td class="t60">6</td>
+    <th class="t60">6</th>
      <td class="t61"></td>
       <td class="t62"></td>
        <td class="t63"></td>
@@ -258,14 +304,21 @@
          <td class="t65"></td>
 </tr>
                <tr>
-    <td class="t70">7</td>
+    <th class="t70">7</th>
      <td class="t71"></td>
       <td class="t72"></td>
        <td class="t73"></td>
         <td class="t74"></td>
          <td class="t75"></td>
 </tr>
-        
+  <tr>
+    <th class="t80">8</th>
+     <td class="t81"></td>
+      <td class="t82"></td>
+       <td class="t83"></td>
+        <td class="t84"></td>
+         <td class="t85"></td>
+</tr>     
             
 </table>
     </div>

@@ -1,10 +1,16 @@
-#oneTable .tname{
+#oneTable .tname,#oneTable .tname a{
     color: dodgerblue;
     font-size: 0.75em;
+    text-decoration: none;
 }
-#twoTable .tname{
-    color: darkseagreen; 
+#twoTable .tname,#twoTable .tname a{
+    color: #5c995c; 
     font-size: 0.75em;
+    text-decoration: none;
+}
+a:hover{
+    font-weight: bold;
+    background-color: aliceblue;
 }
 .cname{
      font-size: 1em;
@@ -13,6 +19,9 @@ td,th{
       width:16.7%;
     height: 3em;  
 text-align: center;
+    border: solid #FFF 1px;
+    background-color: rgba(255,255,255,0.75);
+    margin: 3px;
 }
 
 #oneTable th{
@@ -31,4 +40,22 @@ text-align: center;
 }
 table{
     width: 100%;
+    
+}
+html{
+    width: 100%;
+    height: 100%;   
+}
+body{
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/DSC08240-01.jpg);
+    background-size: cover;
+}
+td:hover{
+    background-color: rgba(255,255,255,0.95); 
+}
+h1{
+    font-size: 1.5em;
+    color: aliceblue;
 }
