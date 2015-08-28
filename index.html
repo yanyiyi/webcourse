@@ -41,7 +41,7 @@
         var whichClass = "t";
         var whichDay = "1";
         var whichSec = "1";
-          if (Cclass == aryPara["classID"]){
+          if (Cclass == aryPara["classID"] || classTeacher == aryPara["teacherID"] ){
 		    switch(classDay){
                 case "週一":
                  whichDay = 1;   
@@ -91,8 +91,14 @@
              whichClass = whichClass.concat(whichSec);
               console.log(whichClass);
               
-              $("#"+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'>"+ classTeacher  +"</span>");
+              if (aryPara["classID"] != null){
+                $("."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'>"+ classTeacher  +"</span>");
+                  
+              }else{
+              $("."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'>"+ Cclass  +"</span>");
+                  }
           }
+          
                     
                     
       })
@@ -102,71 +108,140 @@
 </head>
 <body>
 
-<table>
+<table id="oneTable">
 <tr>
-    <th id="t00">節/周</th>
-    <th id="t01">一</th>
-    <th id="t02">二</th>
-    <th id="t03">三</th>
-<th id="t04">四</th>
-<th id="t05">五</th>
+    <th class="t00">節/周</th>
+    <th class="t01">一</th>
+    <th class="t02">二</th>
+    <th class="t03">三</th>
+<th class="t04">四</th>
+<th class="t05">五</th>
 </tr>
 <tr>
-    <td id="t10">1</td>
-     <td id="t11"></td>
-      <td id="t12"></td>
-       <td id="t13"></td>
-        <td id="t14"></td>
-         <td id="t15"></td>
+    <td class="t10">1</td>
+     <td class="t11"></td>
+      <td class="t12"></td>
+       <td class="t13"></td>
+        <td class="t14"></td>
+         <td class="t15"></td>
 </tr>
 
 <tr>
-    <td id="t20">2</td>
-     <td id="t21"></td>
-      <td id="t22"></td>
-       <td id="t23"></td>
-        <td id="t24"></td>
-         <td id="t25"></td>
+    <td class="t20">2</td>
+     <td class="t21"></td>
+      <td class="t22"></td>
+       <td class="t23"></td>
+        <td class="t24"></td>
+         <td class="t25"></td>
 </tr>
         <tr>
-    <td id="t30">3</td>
-     <td id="t31"></td>
-      <td id="t32"></td>
-       <td id="t33"></td>
-        <td id="t34"></td>
-         <td id="t35"></td>
+    <td class="t30">3</td>
+     <td class="t31"></td>
+      <td class="t32"></td>
+       <td class="t33"></td>
+        <td class="t34"></td>
+         <td class="t35"></td>
 </tr>
                <tr>
-    <td id="t40">4</td>
-     <td id="t41"></td>
-      <td id="t42"></td>
-       <td id="t43"></td>
-        <td id="t44"></td>
-         <td id="t45"></td>
+    <td class="t40">4</td>
+     <td class="t41"></td>
+      <td class="t42"></td>
+       <td class="t43"></td>
+        <td class="t44"></td>
+         <td class="t45"></td>
 </tr>
                <tr>
-    <td id="t50">5</td>
-     <td id="t51"></td>
-      <td id="t52"></td>
-       <td id="t53"></td>
-        <td id="t54"></td>
-         <td id="t55"></td>
+    <td class="t50">5</td>
+     <td class="t51"></td>
+      <td class="t52"></td>
+       <td class="t53"></td>
+        <td class="t54"></td>
+         <td class="t55"></td>
 </tr>
                <tr>
-    <td id="t60">6</td>
-     <td id="t61"></td>
-      <td id="t62"></td>
-       <td id="t63"></td>
-        <td id="t64"></td>
-         <td id="t65"></td>
+    <td class="t60">6</td>
+     <td class="t61"></td>
+      <td class="t62"></td>
+       <td class="t63"></td>
+        <td class="t64"></td>
+         <td class="t65"></td>
 </tr>
                <tr>
-    <td id="t70">7</td>
-     <td id="t71"></td>
-      <td id="t72"></td>
-       <td id="t73"></td>
-        <td id="t74"></td>
-         <td id="t75"></td>
+    <td class="t70">7</td>
+     <td class="t71"></td>
+      <td class="t72"></td>
+       <td class="t73"></td>
+        <td class="t74"></td>
+         <td class="t75"></td>
+</tr>
+        
+            
+</table>
+<table id="twoTable">
+<tr>
+    <th class="t00">節/周</th>
+    <th class="t01">一</th>
+    <th class="t02">二</th>
+    <th class="t03">三</th>
+<th class="t04">四</th>
+<th class="t05">五</th>
+</tr>
+<tr>
+    <td class="t10">1</td>
+     <td class="t11"></td>
+      <td class="t12"></td>
+       <td class="t13"></td>
+        <td class="t14"></td>
+         <td class="t15"></td>
+</tr>
+
+<tr>
+    <td class="t20">2</td>
+     <td class="t21"></td>
+      <td class="t22"></td>
+       <td class="t23"></td>
+        <td class="t24"></td>
+         <td class="t25"></td>
+</tr>
+        <tr>
+    <td class="t30">3</td>
+     <td class="t31"></td>
+      <td class="t32"></td>
+       <td class="t33"></td>
+        <td class="t34"></td>
+         <td class="t35"></td>
+</tr>
+               <tr>
+    <td class="t40">4</td>
+     <td class="t41"></td>
+      <td class="t42"></td>
+       <td class="t43"></td>
+        <td class="t44"></td>
+         <td class="t45"></td>
+</tr>
+               <tr>
+    <td class="t50">5</td>
+     <td class="t51"></td>
+      <td class="t52"></td>
+       <td class="t53"></td>
+        <td class="t54"></td>
+         <td class="t55"></td>
+</tr>
+               <tr>
+    <td class="t60">6</td>
+     <td class="t61"></td>
+      <td class="t62"></td>
+       <td class="t63"></td>
+        <td class="t64"></td>
+         <td class="t65"></td>
+</tr>
+               <tr>
+    <td class="t70">7</td>
+     <td class="t71"></td>
+      <td class="t72"></td>
+       <td class="t73"></td>
+        <td class="t74"></td>
+         <td class="t75"></td>
 </tr>
         
             

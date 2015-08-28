@@ -1,17 +1,31 @@
-.tname{
+#oneTable .tname{
     color: dodgerblue;
     font-size: 0.5em;
 }
-
+#twoTable .tname{
+    color: darkseagreen; 
+    font-size: 0.5em;
+}
 .cname{
      font-size: 1em;
 }
+td,th{
+      width:16.7%;
+    height: 4em;  
+text-align: center;
+}
 
-th{
+#oneTable th{
     background: dodgerblue;
     color: aliceblue;
 }
+#twoTable th{
+    background: darkseagreen;
+     color: aliceblue;
+}
 
-td{
-    background-color: 
+table{
+    width:45%;
+    float: left;
+    margin: 2.5%;
 }
