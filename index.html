@@ -41,8 +41,9 @@
         var whichClass = "t";
         var whichDay = "1";
         var whichSec = "1";
-          if (Cclass == aryPara["classID"] || classTeacher == aryPara["teacherID"] ){
-		    switch(classDay){
+        var tagEXE = 0;  
+          switch(classDay){
+    
                 case "週一":
                  whichDay = 1;   
                 
@@ -86,17 +87,34 @@
                 case "第八節":      
                 whichSec = 8;    
                     break;
+            } 
+             whichClass = whichClass.concat(whichSec);
+          
+        if( Cclass == aryPara["class2ID"] || classTeacher == aryPara["teacher2ID"] ){
+         if(tagEXE <1 && aryPara["class2ID"] != null || aryPara["teacher2ID"] != null){
+                       if (aryPara["class2ID"] != null){
+                        $("#twoTable ."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'>"+ classTeacher  +"</span>");
+
+                      }else if(aryPara["teacher2ID"] != null){
+                      $("#twoTable ."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'>"+ Cclass  +"</span>");
+                          }
+                   
+                  }
+          
+          }
+          if (Cclass == aryPara["classID"] || classTeacher == aryPara["teacherID"] ){
+		    
+              if(tagEXE <1 && aryPara["classID"] != null || aryPara["teacherID"] != null){
+                      if (aryPara["classID"] != null){
+                        $("#oneTable ."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'>"+ classTeacher  +"</span>");
+
+                      }else if(aryPara["teacherID"] != null){
+                      $("#oneTable ."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'>"+ Cclass  +"</span>");
+                          }
+                 
             }
               
-             whichClass = whichClass.concat(whichSec);
-              console.log(whichClass);
               
-              if (aryPara["classID"] != null){
-                $("."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'>"+ classTeacher  +"</span>");
-                  
-              }else{
-              $("."+whichClass).append( "<span class='cname'>"+className+"</span><br><span class='tname'>"+ Cclass  +"</span>");
-                  }
           }
           
                     
@@ -108,7 +126,8 @@
 </head>
 <body>
 
-<table id="oneTable">
+<div id="oneTable">
+<table>
 <tr>
     <th class="t00">節/周</th>
     <th class="t01">一</th>
@@ -177,7 +196,10 @@
         
             
 </table>
-<table id="twoTable">
+
+</div>
+<div id="twoTable">
+<table>
 <tr>
     <th class="t00">節/周</th>
     <th class="t01">一</th>
@@ -246,6 +268,6 @@
         
             
 </table>
-
+    </div>
 </body>
 </html>

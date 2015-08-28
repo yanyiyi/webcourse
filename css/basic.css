@@ -23,9 +23,12 @@ text-align: center;
     background: darkseagreen;
      color: aliceblue;
 }
-
-table{
+#twoTable, #oneTable
+{
     width:45%;
     float: left;
     margin: 2.5%;
+}
+table{
+    width: 100%;
 }
