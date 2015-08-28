@@ -24,13 +24,16 @@ text-align: center;
     margin: 3px;
 }
 
-#oneTable th{
+#oneTable th,#oneTable .sleep{
     background: dodgerblue;
     color: aliceblue;
 }
-#twoTable th{
+#twoTable th,#twoTable .sleep{
     background: darkseagreen;
      color: aliceblue;
+}
+.sleep{
+    height:  1.5em;
 }
 #twoTable, #oneTable
 {
