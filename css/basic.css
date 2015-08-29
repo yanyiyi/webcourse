@@ -74,3 +74,10 @@ h1{
         margin: 0 3%;
     }       
 }
+.disable{
+    color: #666;
+    font-size: 0.9em;
+}
+.classMark{
+    font-size: 0.5em;
+}
