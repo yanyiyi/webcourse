@@ -12,6 +12,9 @@
         var aryPara = [];
         var cc, cc2;
         var secCount = 0;
+        var teacherObj = new Object();
+        var classObj = new Object();
+    
         cc = 0;
         cc2 = 0;
         if (strUrl.indexOf("?") != -1) {
@@ -146,6 +149,20 @@
                         }
 
                     }
+                    
+                if (className == aryPara["course"]){
+             
+             if(teacherObj[classTeacher] >= 1) teacherObj[classTeacher]++;      
+            else teacherObj[classTeacher] = 1;
+            $("."+whichClass).addClass("tName"+classTeacher);
+            $("."+whichClass).addClass("tName"+classTeacher+Cclass);
+             classObj[Cclass] = Cclass;
+             
+             if (whichSec > secCount) {
+                secCount = whichSec;}  
+   
+         }
+                    
                     if (Cclass == aryPara["classID"] || classTeacher == aryPara["teacherID"]) {
                         if (whichSec > secCount) {
                         secCount = whichSec;
@@ -188,6 +205,28 @@
                     $(".t" + i + "r").css("display", "none");
                     
                 }
+                
+                
+                  if (aryPara["course"]!=null){
+                      Object.getOwnPropertyNames(teacherObj).forEach(function(val, idx, array) {
+  console.log(val + ' -> ' + teacherObj[val]);
+                 $("td").append("<span class='disable tName"+val+"'>"+val+"</span><br>");
+                    $(".tName"+val+" .tName"+val).removeClass("disable");
+                    $(".tName"+val+" .tName"+val).addClass("tname");
+                    
+                    for(var i in classObj){
+                         $(".tName"+val+i+" .tName"+val).append("<br><span class='classMark'>("+i+")</span>");
+                       
+                    }           
+                });
+                  }
+                
+                function secCountUpate(){
+                if (whichSec > secCount) {
+                        secCount = whichSec;
+                    }
+                }
+                
                 $("#oneTable").css("display", "block");
                 $("#twoTable").css("display", "block");
             }
@@ -244,7 +283,7 @@
                 <td class="t45"></td>
             </tr>
             <tr class="t5r">
-                <td colspan="6" class="sleep">午休時間</td>
+                <th colspan="6" class="sleep">午休時間</th>
             </tr>
             <tr class="t5r">
                 <th class="t50">5</th>
@@ -281,7 +320,7 @@
             </tr>
 
             <tr class="t9r">
-                <td colspan="6" class="sleep">晚間休息</td>
+                <th colspan="6" class="sleep">晚間休息</th>
             </tr>
 
 
@@ -368,7 +407,7 @@
                 <td class="t45"></td>
             </tr>
             <tr class="t5r">
-                <td colspan="6" class="sleep">午休時間</td>
+                <th colspan="6" class="sleep">午休時間</th>
             </tr>
             <tr class="t5r">
                 <th class="t50">5</th>
@@ -404,7 +443,7 @@
             </tr>
 
             <tr class="t9r">
-                <td colspan="6" class="sleep">晚間休息</td>
+                <th colspan="6" class="sleep">晚間休息</th>
             </tr>
 
 
