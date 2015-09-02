@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html>
 
 <head>
@@ -6,17 +7,35 @@
     <title>課表查詢雙視窗</title>
     <link rel=stylesheet href="./css/basic.css">
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
+    <!--[if lt IE 7]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js"></script>
+<![endif]-->
+
+
+<!--[if lt IE 8]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
+<![endif]-->
+
+
+
+<!--[if lt IE 9]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<![endif]-->
     <script>
         var strUrl = decodeURIComponent(location.search);
         var getPara, ParaVal;
         var aryPara = [];
-        var cc, cc2;
+        var cc, cc2, cc3, cc4;
         var secCount = 0;
         var teacherObj = new Object();
         var classObj = new Object();
-    
+        var teacherObj2 = new Object();
+        var classObj2 = new Object();
+        var teacherList = new Object();
         cc = 0;
         cc2 = 0;
+        cc3 = 0;
+        cc4 = 0;
         if (strUrl.indexOf("?") != -1) {
             var getSearch = strUrl.split("?");
             getPara = getSearch[1].split("&");
@@ -55,126 +74,157 @@
                     var whichSec = "1";
 
                     switch (classDay) {
-                            
+
                     case "週一":
-                        whichDay =1;
+                        whichDay = 1;
                         break;
                     case "週二":
-                        whichDay =2;
+                        whichDay = 2;
                         break;
                     case "週三":
-                        whichDay =3;
+                        whichDay = 3;
                         break;
                     case "週四":
-                        whichDay =4;
+                        whichDay = 4;
                         break;
                     case "週五":
-                        whichDay =5;
+                        whichDay = 5;
                         break;
-                    
+
                     }
-                    
-                    
+
+
                     switch (classSec) {
                     case "第一節":
-                        whichSec =1;
+                        whichSec = 1;
                         break;
                     case "第二節":
-                        whichSec =2;
+                        whichSec = 2;
                         break;
                     case "第三節":
-                        whichSec =3;
+                        whichSec = 3;
                         break;
                     case "第四節":
-                        whichSec =4;
+                        whichSec = 4;
                         break;
                     case "第五節":
-                        whichSec =5;
+                        whichSec = 5;
                         break;
                     case "第六節":
-                        whichSec =6;
+                        whichSec = 6;
                         break;
                     case "第七節":
-                        whichSec =7;
+                        whichSec = 7;
                         break;
                     case "第八節":
-                        whichSec =8;
+                        whichSec = 8;
                         break;
                     case "第九節":
-                        whichSec =9;
+                        whichSec = 9;
                         break;
                     case "第十節":
-                        whichSec =10;
+                        whichSec = 10;
                         break;
                     case "第十一節":
-                        whichSec =11;
+                        whichSec = 11;
                         break;
                     case "第十二節":
-                        whichSec =12;
+                        whichSec = 12;
                         break;
-                    
+
                     }
                     whichClass = whichClass.concat(whichSec);
                     whichClass = whichClass.concat(whichDay);
-                    
-                   
 
-                    if (Cclass == aryPara["class2ID"] || classTeacher == aryPara["teacher2ID"]){
+
+
+                    if (Cclass == aryPara["class2ID"] || classTeacher == aryPara["teacher2ID"]) {
                         if (whichSec > secCount) {
-                        secCount = whichSec;
-                    }
+                            secCount = whichSec;
+                        }
                         if (aryPara["class2ID"] != null || aryPara["teacher2ID"] != null) {
                             if (aryPara["class2ID"] != null) {
 
                                 if (cc2 == 0) {
                                     $("#twoTable .tTitle").append(aryPara["class2ID"] + "的班級課表");
-                                    
+
                                     cc2++;
                                 }
 
-                                $("#twoTable ." +whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?class2ID=" + aryPara["class2ID"] + "&teacherID=" + classTeacher + "'>" + classTeacher + "</a></span>");
+                                $("#twoTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?class2ID=" + aryPara["class2ID"] + "&teacherID=" + classTeacher + "'>" + classTeacher + "</a></span>");
 
                             } else if (aryPara["teacher2ID"] != null) {
 
                                 if (cc2 == 0) {
                                     $("#twoTable .tTitle").append(aryPara["teacher2ID"] + "的教師課表");
-                                    
+
                                     cc2++;
                                 }
 
-                                $("#twoTable ." +whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?teacher2ID=" + aryPara["teacher2ID"] + "&classID=" + Cclass + "'>" + Cclass + "</span>");
-                                
+                                $("#twoTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?teacher2ID=" + aryPara["teacher2ID"] + "&classID=" + Cclass + "'>" + Cclass + "</span>");
+
                             }
 
                         }
 
                     }
+
+        
+//課程查詢左邊
+                    if (aryPara["course"] != null && className == aryPara["course"]) {
+                        if (cc3 == 0) {
+                                    $("#oneTable .tTitle").append(aryPara["course"] + "科的教師課表");
+
+                                    cc3++;
+                                }
+                        
+                        if (teacherObj[classTeacher] >= 1) teacherObj[classTeacher] ++;
+                        else teacherObj[classTeacher] = 1;
+                        $("#oneTable ." + whichClass).addClass("tName" + classTeacher);
+                        $("#oneTable ." + whichClass).addClass("tName" + classTeacher + Cclass);
+                        classObj[Cclass] = Cclass;
+
+                        if (whichSec > secCount) {
+                            secCount = whichSec;
+                        }
+
+                    }
                     
-                if (className == aryPara["course"]){
-             
-             if(teacherObj[classTeacher] >= 1) teacherObj[classTeacher]++;      
-            else teacherObj[classTeacher] = 1;
-            $("."+whichClass).addClass("tName"+classTeacher);
-            $("."+whichClass).addClass("tName"+classTeacher+Cclass);
-             classObj[Cclass] = Cclass;
-             
-             if (whichSec > secCount) {
-                secCount = whichSec;}  
-   
-         }
+//課程查詢右邊
+                    if (aryPara["course2"] != null && className == aryPara["course2"]) {
+                        if (cc4 == 0) {
+                                    $("#twoTable .tTitle").append(aryPara["course2"] + "科的教師課表");
+
+                                    cc4++;
+                                }
+                        
+                        if (teacherObj2[classTeacher] >= 1) teacherObj2[classTeacher] ++;
+                        else teacherObj2[classTeacher] = 1;
+                        $("#twoTable ." + whichClass).addClass("tName" + classTeacher);
+                        $("#twoTable ." + whichClass).addClass("tName" + classTeacher + Cclass);
+                        classObj2[Cclass] = Cclass;
+
+                        if (whichSec > secCount) {
+                            secCount = whichSec;
+                        }
+
+                    }
                     
+                    
+        
+
                     if (Cclass == aryPara["classID"] || classTeacher == aryPara["teacherID"]) {
                         if (whichSec > secCount) {
-                        secCount = whichSec;
-                    }
+                            secCount = whichSec;
+                        }
                         if (aryPara["classID"] != null || aryPara["teacherID"] != null) {
                             if (aryPara["classID"] != null) {
                                 if (cc == 0) {
                                     $("#oneTable .tTitle").append(aryPara["classID"] + "的班級課表");
                                     cc++;
                                 }
-                                
-                                
+
+
                                 $("#oneTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?classID=" + aryPara["classID"] + "&teacher2ID=" + classTeacher + "'>" + classTeacher + "</a></span>");
 
                             } else if (aryPara["teacherID"] != null) {
@@ -182,12 +232,12 @@
 
                                 if (cc == 0) {
                                     $("#oneTable .tTitle").append(aryPara["teacherID"] + "的教師課表");
-                                    
+
                                     cc++;
                                 }
-                               
+
                                 $("#oneTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?teacherID=" + aryPara["teacherID"] + "&class2ID=" + Cclass + "'>" + Cclass + "</span>");
-                                
+
                             }
 
 
@@ -199,34 +249,53 @@
 
 
                 });
-//                console.log(secCount);
-                
+                //                console.log(secCount);
+
                 for (var i = secCount + 1; i <= 12; i++) {
                     $(".t" + i + "r").css("display", "none");
-                    
+
+                }
+
+
+                if (aryPara["course"] != null) {
+                    Object.getOwnPropertyNames(teacherObj).forEach(function (val, idx, array) {
+                        //console.log(val + ' -> ' + teacherObj[val]);
+                        $("#oneTable td").append("<span class='disable tName" + val + "'>" + val + "</span><br>");
+                        $("#oneTable .tName" + val + " .tName" + val).removeClass("disable");
+                        $("#oneTable .tName" + val + " .tName" + val).addClass("tname");
+
+                        for (var i in classObj) {
+                            $("#oneTable .tName" + val + i + " .tName" + val).append("<br><span class='classMark'>(" + i + ")</span>");
+
+                        }
+                    });
                 }
                 
+                if (aryPara["course2"] != null) {
+                    Object.getOwnPropertyNames(teacherObj2).forEach(function (val, idx, array) {
+                        //console.log(val + ' -> ' + teacherObj2[val]);
+                        $("#twoTable td").append("<span class='disable tName" + val + "'>" + val + "</span><br>");
+                        $("#twoTable .tName" + val + " .tName" + val).removeClass("disable");
+                        $("#twoTable .tName" + val + " .tName" + val).addClass("tname");
+
+                        for (var i in classObj) {
+                            $("#twoTable .tName" + val + i + " .tName" + val).append("<br><span class='classMark'>(" + i + ")</span>");
+
+                        }
+                    });
+                }
+
                 
-                  if (aryPara["course"]!=null){
-                      Object.getOwnPropertyNames(teacherObj).forEach(function(val, idx, array) {
-  console.log(val + ' -> ' + teacherObj[val]);
-                 $("td").append("<span class='disable tName"+val+"'>"+val+"</span><br>");
-                    $(".tName"+val+" .tName"+val).removeClass("disable");
-                    $(".tName"+val+" .tName"+val).addClass("tname");
-                    
-                    for(var i in classObj){
-                         $(".tName"+val+i+" .tName"+val).append("<br><span class='classMark'>("+i+")</span>");
-                       
-                    }           
-                });
-                  }
                 
-                function secCountUpate(){
-                if (whichSec > secCount) {
+                
+                
+                
+                function secCountUpate() {
+                    if (whichSec > secCount) {
                         secCount = whichSec;
                     }
                 }
-                
+
                 $("#oneTable").css("display", "block");
                 $("#twoTable").css("display", "block");
             }
@@ -287,7 +356,7 @@
             </tr>
             <tr class="t5r">
                 <th class="t50">5</th>
-                
+
                 <td class="t51"></td>
                 <td class="t52"></td>
                 <td class="t53"></td>
