@@ -22,6 +22,11 @@
 <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
 <![endif]-->
     <script>
+        function _$(i){ 
+            var j = encodeURIComponent(i);
+            return j;
+        }
+        alert(_$("大家好"));
         var strUrl = decodeURIComponent(location.search);
         var getPara, ParaVal;
         var aryPara = [];
@@ -152,7 +157,7 @@
                                     cc2++;
                                 }
 
-                                $("#twoTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?class2ID=" + aryPara["class2ID"] + "&teacherID=" + classTeacher + "'>" + classTeacher + "</a></span>");
+                                $("#twoTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?class2ID=" + _$(aryPara["class2ID"]) + "&teacherID=" + _$(classTeacher) + "'>" + classTeacher + "</a></span>");
 
                             } else if (aryPara["teacher2ID"] != null) {
 
@@ -162,7 +167,7 @@
                                     cc2++;
                                 }
 
-                                $("#twoTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?teacher2ID=" + aryPara["teacher2ID"] + "&classID=" + Cclass + "'>" + Cclass + "</span>");
+                                $("#twoTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?teacher2ID=" + _$(aryPara["teacher2ID"]) + "&classID=" + _$(Cclass) + "'>" + Cclass + "</span>");
 
                             }
 
@@ -226,7 +231,7 @@
                                 }
 
 
-                                $("#oneTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?classID=" + aryPara["classID"] + "&teacher2ID=" + classTeacher + "'>" + classTeacher + "</a></span>");
+                                $("#oneTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?classID=" + _$(aryPara["classID"]) + "&teacher2ID=" + _$(classTeacher) + "'>" + classTeacher + "</a></span>");
 
                             } else if (aryPara["teacherID"] != null) {
 
@@ -237,7 +242,7 @@
                                     cc++;
                                 }
 
-                                $("#oneTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?teacherID=" + aryPara["teacherID"] + "&class2ID=" + Cclass + "'>" + Cclass + "</span>");
+                                $("#oneTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?teacherID=" + _$(aryPara["teacherID"]) + "&class2ID=" + _$(Cclass) + "'>" + Cclass + "</span>");
 
                             }
 
