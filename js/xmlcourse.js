@@ -35,13 +35,12 @@
 
         }
         
-        if(aryPara["course2"]=="undefined") aryPara["course2"] = null;
-if(aryPara["course"]=="undefined") aryPara["course"] = null;
-if(aryPara["classID"]=="undefined") aryPara["classID"] = null;
-if(aryPara["class2ID"]=="undefined") aryPara["class2ID"] = null;
-
-if(aryPara["teacherID"]=="undefined") aryPara["teacherID"] = null;
-if(aryPara["teacher2ID"]=="undefined") aryPara["teacher2ID"] = null;
+        if(aryPara["course2"]=="undefined") aryPara["course2"] = "";
+if(aryPara["course"]=="undefined") aryPara["course"] = "";
+if(aryPara["classID"]=="undefined") aryPara["classID"] = "";
+if(aryPara["class2ID"]=="undefined") aryPara["class2ID"] = "";
+if(aryPara["teacherID"]=="undefined") aryPara["teacherID"] = "";
+if(aryPara["teacher2ID"]=="undefined") aryPara["teacher2ID"] = "";
         
         $.ajax({
             url: './ClassPair.xml',
@@ -104,7 +103,7 @@ if(aryPara["teacher2ID"]=="undefined") aryPara["teacher2ID"] = null;
                     var m = n-1;
                     var o = n+1;
                         if (classPairList[classTeacher+"0"] == null){ classPairList[classTeacher+"0"] = className;
-exc++;                                                                    }else if(classPairList[classTeacher+"0"] == className){}
+exc++;}else if(classPairList[classTeacher+"0"] == className){}
         else if(classPairList[classTeacher+m] != null && classPairList[classTeacher+o] == null && exc == 0){
                  classPairList[classTeacher+n] = className;
 exc++;
@@ -299,6 +298,8 @@ Object.getOwnPropertyNames(courseList).forEach(function (val, idx, array) {
     $(".teacherList > ul").append("<li class='tcList"+val+"'>"+val+"<ul></ul></li>")
 });
                 
+                
+                
 
     Object.getOwnPropertyNames(classPairList).forEach(function (val, idx, array) {
         var nTec = val.length;
@@ -318,6 +319,8 @@ Object.getOwnPropertyNames(courseList).forEach(function (val, idx, array) {
 });
                 
 
+                
+                
                 
                 if (aryPara["course"] != null) {
                     Object.getOwnPropertyNames(teacherObj).forEach(function (val, idx, array) {
