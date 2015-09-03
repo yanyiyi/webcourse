@@ -299,7 +299,7 @@ Object.getOwnPropertyNames(courseList).forEach(function (val, idx, array) {
                 
 
     Object.getOwnPropertyNames(classPairList).forEach(function (val, idx, array) {
-        var nTec = val.replace("\d+","");
+        var nTec = val.replace("[0-9]","");
         //console.log(val+"老師<>課"+classPairList[val]);
         $(".tcList"+classPairList[val]+" > ul").append("<li>"+nTec+"</li>");
         
