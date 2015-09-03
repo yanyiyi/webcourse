@@ -181,22 +181,22 @@ exc++;
                         }
                         
                         if (aryPara["class2ID"] != null || aryPara["teacher2ID"] != null) {
-                            if (aryPara["class2ID"] != null) {
+                            
+                            if (aryPara["class2ID"] != null && aryPara["class2ID"] != "") {
 
                                 if (cc2 == 0) {
                                     $("#twoTable .tTitle").append(aryPara["class2ID"] + "的班級課表");
-
                                     cc2++;
                                 }
 
                                 $("#twoTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?class2ID=" + _$(aryPara["class2ID"]) + "&teacherID=" + _$(classTeacher) + "'>" + classTeacher + "</a></span>");
 
-                            } else if (aryPara["teacher2ID"] != null) {
+                            }else if(aryPara["teacher2ID"] != null && aryPara["teacher2ID"] != "") {
 
                                 if (cc2 == 0) {
                                     $("#twoTable .tTitle").append(aryPara["teacher2ID"] + "的教師課表");
-
                                     cc2++;
+                                    
                                 }
 
                                 $("#twoTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?teacher2ID=" + _$(aryPara["teacher2ID"]) + "&classID=" + _$(Cclass) + "'>" + Cclass + "</span>");
@@ -256,7 +256,7 @@ exc++;
                             secCount = whichSec;
                         }
                         if (aryPara["classID"] != null || aryPara["teacherID"] != null) {
-                            if (aryPara["classID"] != null) {
+                            if (aryPara["classID"] != null && aryPara["classID"] != "") {
                                 if (cc == 0) {
                                     $("#oneTable .tTitle").append(aryPara["classID"] + "的班級課表");
                                     cc++;
@@ -265,7 +265,7 @@ exc++;
 
                                 $("#oneTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?classID=" + _$(aryPara["classID"]) + "&teacher2ID=" + _$(classTeacher) + "'>" + classTeacher + "</a></span>");
 
-                            } else if (aryPara["teacherID"] != null) {
+                            } else if (aryPara["teacherID"] != null && aryPara["teacherID"] != "") {
 
 
                                 if (cc == 0) {
