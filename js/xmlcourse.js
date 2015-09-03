@@ -304,7 +304,7 @@ Object.getOwnPropertyNames(courseList).forEach(function (val, idx, array) {
     Object.getOwnPropertyNames(classPairList).forEach(function (val, idx, array) {
         var nTec = val.length;
         nTec = val.substring(0,nTec-1);
-        //console.log(val+"老師<>課"+classPairList[val]);
+        console.log(val+"老師<>課"+classPairList[val]);
         $(".one .tcList"+classPairList[val]+" > ul").append("<li><a href='./?teacherID="+nTec+"&class2ID="+aryPara["class2ID"]+"&course2="+aryPara["course2"]+"&teacher2ID="+aryPara["teacher2ID"]+" '>"+nTec+"</li>");
         
         $(".two .tcList"+classPairList[val]+" > ul").append("<li><a href='./?teacher2ID="+nTec+"&classID="+aryPara["classID"]+"&course="+aryPara["course"]+"&teacherID="+aryPara["teacherID"]+" '>"+nTec+"</li>");
