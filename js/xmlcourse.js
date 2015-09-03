@@ -34,12 +34,14 @@
             }
 
         }
+        
+        if(aryPara["course2"]=="undefined") aryPara["course2"] = null;
+if(aryPara["course"]=="undefined") aryPara["course"] = null;
+if(aryPara["classID"]=="undefined") aryPara["classID"] = null;
+if(aryPara["class2ID"]=="undefined") aryPara["class2ID"] = null;
 
-        for (var i; i <= 12; i++) {
-
-
-        }
-
+if(aryPara["teacherID"]=="undefined") aryPara["teacherID"] = null;
+if(aryPara["teacher2ID"]=="undefined") aryPara["teacher2ID"] = null;
         
         $.ajax({
             url: './ClassPair.xml',
@@ -47,7 +49,7 @@
             dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
             timeout: 1000,
             error: function (xml) {
-                 alert("教室對應表找不到，採用撈資料模式，煩請管理員在資料夾中放入「ClassPair.xml」！");
+                 //alert("教室對應表找不到，採用撈資料模式，煩請管理員在資料夾中放入「ClassPair.xml」！");
                         $.ajax({
                     url: './ClassRoomList.xml',
                     type: 'GET',
@@ -55,10 +57,10 @@
                     timeout: 1000,
                     error: function (xml) {
 
-                        alert("採用「教室資料表」找不到，煩請管理員在資料夾中放入「ClassRoomList.xml」！");
+                       // alert("採用「教室資料表」找不到，煩請管理員在資料夾中放入「ClassRoomList.xml」！");
                     },
                     success: function (xml) {
-                        alert("教室對應表找到了，採用對應模式");
+                        //alert("教室對應表找到了，採用對應模式");
                     }
                 });
             },
@@ -299,15 +301,20 @@ Object.getOwnPropertyNames(courseList).forEach(function (val, idx, array) {
                 
 
     Object.getOwnPropertyNames(classPairList).forEach(function (val, idx, array) {
-        var nTec = val.replace("[0-9]","");
+        var nTec = val.length;
+        nTec = val.substring(0,nTec-1);
         //console.log(val+"老師<>課"+classPairList[val]);
-        $(".tcList"+classPairList[val]+" > ul").append("<li>"+nTec+"</li>");
+        $(".one .tcList"+classPairList[val]+" > ul").append("<li><a href='./?teacherID="+nTec+"&class2ID="+aryPara["class2ID"]+"&course2="+aryPara["course2"]+"&teacher2ID="+aryPara["teacher2ID"]+" '>"+nTec+"</li>");
+        
+        $(".two .tcList"+classPairList[val]+" > ul").append("<li><a href='./?teacher2ID="+nTec+"&classID="+aryPara["classID"]+"&course="+aryPara["course"]+"&teacherID="+aryPara["teacherID"]+" '>"+nTec+"</li>");
         
 });
     
                 
                 Object.getOwnPropertyNames(classList).forEach(function (val, idx, array) {
-    $(".classList > ul").append("<li>"+val+"</li>")
+    $(".one .classList > ul").append("<li><a href='./?classID="+val+"&class2ID="+aryPara["class2ID"]+"&course2="+aryPara["course2"]+"&teacher2ID="+aryPara["teacher2ID"]+" '>"+val+"</a></li>")
+
+    $(".two .classList > ul").append("<li><a href='./?class2ID="+val+"&classID="+aryPara["classID"]+"&course="+aryPara["course"]+"&teacherID="+aryPara["teacherID"]+" '>"+val+"</a></li>")
 });
                 
 
