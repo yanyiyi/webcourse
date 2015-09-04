@@ -469,12 +469,12 @@ Object.getOwnPropertyNames(classRoom).forEach(function (val, idx, array) {
                 if (aryPara["course2"] != null,aryPara["course2"] != "") {
                     Object.getOwnPropertyNames(teacherObj2).forEach(function (val, idx, array) {
                         //console.log(val + ' -> ' + teacherObj2[val]);
-                        $("#twoTable td").append("<span class='disable tName" + val + "'><a href='./?teacherID=" + _$(val) + "&classID2=" + _$(aryPara["class2ID"]) + "&course2=" + _$(aryPara["class2ID"]) + " '>" + val + "</span><br>");
+                        $("#twoTable td").append("<span class='disable tName" + val + "'><a href='./?teacherID=" + _$(val) + "&class2ID=" + _$(aryPara["class2ID"]) + "&course2=" + _$(aryPara["course2"]) + " '>" + val + "</span><br>");
                         $("#twoTable .tName" + val + " .tName" + val).removeClass("disable");
                         $("#twoTable .tName" + val + " .tName" + val).addClass("tname");
 
                         for (var i in classObj2) {
-                            $("#twoTable .tName" + val + i + " .tName" + val).append("<br><span class='classMark'><a href='./?classID=" + _$(i) + "&class2ID=" + _$(aryPara["class2ID"]) + "&course2=" + _$(aryPara["class2ID"]) +"&teacher2ID=" + aryPara["teacher2"] + " '>(" + i + ")</span>");
+                            $("#twoTable .tName" + val + i + " .tName" + val).append("<br><span class='classMark'><a href='./?classID=" + _$(i) + "&class2ID=" + _$(aryPara["class2ID"]) + "&course2=" + _$(aryPara["course2"]) +"&teacher2ID=" + aryPara["teacher2ID"] + " '>(" + i + ")</span>");
 
                         }
                     }); //end of ajax
