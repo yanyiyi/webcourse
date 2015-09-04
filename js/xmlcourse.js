@@ -349,7 +349,7 @@ if(aryPara["room2"] != null){
                     
             if(className == val && aryPara["room2"] == classRoom[val] ){
             if (cc6 == 0) $("#twoTable h1").append(classRoom[val]);
-            $("#twoTable ."+whichClass).append("<span class='cname'><a href='./?course="+_$(className)+"  &room2="+_$(aryPara["room1"])+"'>"+className+"</a></span><br><span class='tname'><a href='./?teacherID="+ _$(classTeacher)+"&room2="+_$(aryPara["room2"])+"'>"+classTeacher+"</a></span><br><span class='tname classMark'><a href='./?classID="+_$(Cclass)+"&room2="+_$(aryPara["room2"])+"'>("+Cclass+")</a></span><br>");
+            $("#twoTable ."+whichClass).append("<span class='cname'><a href='./?course="+_$(className)+"&room2="+_$(aryPara["room2"])+"'>"+className+"</a></span><br><span class='tname'><a href='./?teacherID="+_$(classTeacher)+"&room2="+_$(aryPara["room2"])+"'>"+classTeacher+"</a></span><br><span class='tname classMark'><a href='./?classID="+_$(Cclass)+"&room2="+_$(aryPara["room2"])+"'>("+Cclass+")</a></span><br>");
                 cc6++;
              }
                         
