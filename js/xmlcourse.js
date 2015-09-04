@@ -1,6 +1,4 @@
-    
-
-function _$(i) {
+    function _$(i) {
             var j = encodeURIComponent(i);
             return j;
         }
@@ -116,7 +114,7 @@ function _$(i) {
                     var whichSec = "1";
                     var exc = 0;
                     
-                    
+                        
                     
                     
                     //製作選單列表
@@ -490,18 +488,20 @@ Object.getOwnPropertyNames(classRoom).forEach(function (val, idx, array) {
 
                 $("#oneTable").css("display", "block");
                 $("#twoTable").css("display", "block");
-            }
-
-
-        });
-$(window).resize(function(){
-       if ($(window).width() <= 720) {  
+            
+            if ($(window).width() <= 720) {  
               // is mobile device
            alert("歡迎使用「杉林國中」課表交查查詢系統手機版，手機版的使用是「上下」對照的喔！");
            $(".teacherList > ul > li > a ").removeAttr("href");
             
-       }     
-});
+       }  
+            }
+
+
+        });
+
+      
+
     
     
         
