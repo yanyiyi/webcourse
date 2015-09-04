@@ -431,18 +431,22 @@ function whichGrade(i){
 
             }
               
-                
-                
+             
 
                 Object.getOwnPropertyNames(classList).forEach(function (val, idx, array) {
                    var g = whichGrade(val);  
-                    $(".one .classList > ul > li"+g+" ul").append("<li><a href='./?classID=" + _$(val) + "&class2ID=" + _$(aryPara["class2ID"]) + "&course2=" + _$(aryPara["class2ID"]) + "&teacher2ID=" +_$(aryPara["teacher2ID"]) + " '>" + val + "</a></li>")
+                    $(".one .classList > ul > li"+g+" ul").append("<li><a href='./?classID=" + _$(val) + "&class2ID=" + _$(aryPara["class2ID"]) + "&course2=" + _$(aryPara["class2ID"]) + "&teacher2ID=" +_$(aryPara["teacher2ID"]) + " '>" + val + "</a></li>");
 
-                    $(".two .classList > ul > li"+g+ " ul").append("<li><a href='./?class2ID=" + _$(val) + "&classID=" + aryPara["classID"] + "&course=" + aryPara["course"] + "&teacherID=" + aryPara["teacherID"] + " '>" + val + "</a></li>")
+                    $(".two .classList > ul > li"+g+ " ul").append("<li><a href='./?class2ID=" + _$(val) + "&classID=" + _$(aryPara["classID"]) + "&course=" + _$(aryPara["course"]) + "&teacherID=" + _$(aryPara["teacherID"]) + " '>" + val + "</a></li>");
                 });
 
 
-
+Object.getOwnPropertyNames(classRoom).forEach(function (val, idx, array) {
+        $(".one .roomList > ul").append("<li><a href='./?room1="+_$(classRoom[val])+"&room2=" + _$(aryPara["room2"]) +"&classID=" + _$(aryPara["classID"]) + "&course=" + _$(aryPara["course"]) + "&teacherID=" + _$(aryPara["teacherID"])+"'>"+classRoom[val]+"</a></li>");
+    $(".two .roomList > ul").append("<li><a href='./?room2="+_$(classRoom[val])+"&room1=" + _$(aryPara["room1"])+"&class2ID=" + _$(aryPara["class2ID"]) + "&course2=" + _$(aryPara["course2"]) + "&teacher2ID=" + _$(aryPara["teacher2ID"])+"'>"+classRoom[val]+"</a></li>");
+    
+});
+   
 
 
                 if (aryPara["course"] != null || aryPara["course"] != "") {

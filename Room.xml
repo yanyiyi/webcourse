@@ -18,11 +18,11 @@
     <RoomList>
         <Rid>4</Rid>
         <RoriClass>健教</RoriClass>
-        <Room>體育教室</Room>
+        <Room>健教教室</Room>
     </RoomList>
     <RoomList>
         <Rid>5</Rid>
         <RoriClass>補英</RoriClass>
-        <Room>Michael Kuo 協同教學</Room>
+        <Room>Michael Kuo</Room>
     </RoomList>
 </CClist>

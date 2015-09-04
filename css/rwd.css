@@ -1,6 +1,28 @@
+.mobileSet{
+    float: left;
+    display: none;
+    height: 50px;
+    position:relative;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+
 @media screen and (max-width:720px){
     #twoTable,#oneTable{
         width:94%;
-        margin: 0 3%;
-    }       
+        margin: 3%;    
+    }
+    .mobileSet{
+        display: block;
+        position: static;
+    }
+    .screenSet > .two{
+        display: none;
+    }
+    .one, .two{
+        width: 90%;
+    }
+    
 }
+
