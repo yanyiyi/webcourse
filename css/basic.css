@@ -1,5 +1,11 @@
 /*朱駿錫*/
-
+a{
+    color: #222;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
 #oneTable .tname,#oneTable .tname a{
     color: dodgerblue;
     font-size: 0.9em;
@@ -83,7 +89,11 @@ h1{
         margin: 0 3%;
     }       
 }
-.disable{
+.disable,.disable a{
+    color: #aaa;
+    font-size: 0.9em;
+}
+.disable a:hover{
     color: #666;
     font-size: 0.9em;
 }
@@ -200,6 +210,11 @@ ul.two ul ul {
    
     
 }
+li a{
+    display: block;
+    width: 100%;
+    height: 100%
+}
 nav a{
     text-decoration: none;
     color: #FFF;
@@ -212,5 +227,5 @@ footer{
     color: #FFF;
 }
 html,body{
-    font-family:"微軟正黑體";
+    font-family:"微軟正黑體",Hiragino Sans W1,;
 }
