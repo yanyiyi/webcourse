@@ -26,3 +26,20 @@
     
 }
 
+@media print{
+    
+    nav{
+        display: none;
+    }
+    html,body{
+        background: #FFF;
+        color: black;
+    }
+    table,tr,th,td{
+        margin: 0;
+        border: 1px solid #222;
+    }
+    h1{
+        color: black;
+    }
+}

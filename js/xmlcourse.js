@@ -337,7 +337,7 @@ if(aryPara["room1"] != null){
                     
             if(className == val && aryPara["room1"] == classRoom[val] ){
             if (cc5 == 0) $("#oneTable h1").append(classRoom[val]);
-            $("#oneTable ."+whichClass).append("<span class='cname'><a href='./?course2="+_$(className)+"  &room1="+_$(aryPara["room1"])+"'>"+className+"</a></span><br><span class='tname'><a href='./?teacher2ID="+ _$(classTeacher)+"&room1="+_$(aryPara["room1"])+"'>"+classTeacher+"</a></span><br><span class='tname classMark'><a href='./?class2ID="+_$(Cclass)+"&room1="+_$(aryPara["room1"])+"'>("+Cclass+")</a></span><br>");
+            $("#oneTable ."+whichClass).append("<span class='cname'><a href='./?course2="+_$(className)+"&amp;room1="+_$(aryPara["room1"])+"'>"+className+"</a></span><br><span class='tname'><a href='./?teacher2ID="+_$(classTeacher)+"&room1="+_$(aryPara["room1"])+"'>"+classTeacher+"</a></span><br><span class='tname classMark'><a href='./class2ID="+_$(Cclass)+"&room1="+_$(aryPara["room1"])+"'>("+Cclass+")</a></span><br>");
                 cc5++;
              }
                         
@@ -442,8 +442,8 @@ function whichGrade(i){
 
 
 Object.getOwnPropertyNames(classRoom).forEach(function (val, idx, array) {
-        $(".one .roomList > ul").append("<li><a href='./?room1="+_$(classRoom[val])+"&room2=" + _$(aryPara["room2"]) +"&classID=" + _$(aryPara["classID"]) + "&course=" + _$(aryPara["course"]) + "&teacherID=" + _$(aryPara["teacherID"])+"'>"+classRoom[val]+"</a></li>");
-    $(".two .roomList > ul").append("<li><a href='./?room2="+_$(classRoom[val])+"&room1=" + _$(aryPara["room1"])+"&class2ID=" + _$(aryPara["class2ID"]) + "&course2=" + _$(aryPara["course2"]) + "&teacher2ID=" + _$(aryPara["teacher2ID"])+"'>"+classRoom[val]+"</a></li>");
+        $(".one .roomList > ul").append("<li><a href='./?room1="+_$(classRoom[val])+"&room2=" + _$(aryPara["room2"]) +"&class2ID=" + _$(aryPara["class2ID"]) + "&course2=" + _$(aryPara["course2"]) + "&teacher2ID=" + _$(aryPara["teacher2ID"])+"'>"+classRoom[val]+"</a></li>");
+    $(".two .roomList > ul").append("<li><a href='./?room2="+_$(classRoom[val])+"&room1=" + _$(aryPara["room1"])+"&classID=" + _$(aryPara["classID"]) + "&course=" + _$(aryPara["course"]) + "&teacherID=" + _$(aryPara["teacherID"])+"'>"+classRoom[val]+"</a></li>");
     
 });
    
