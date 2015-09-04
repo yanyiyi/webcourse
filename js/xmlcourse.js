@@ -1,4 +1,6 @@
-        function _$(i) {
+    
+
+function _$(i) {
             var j = encodeURIComponent(i);
             return j;
         }
@@ -491,4 +493,15 @@ Object.getOwnPropertyNames(classRoom).forEach(function (val, idx, array) {
             }
 
 
-        })
+        });
+$(window).resize(function(){
+       if ($(window).width() <= 720) {  
+              // is mobile device
+           
+           $(".teacherList > ul > li > a ").removeAttr("href");
+ 
+       }     
+});
+    
+    
+        

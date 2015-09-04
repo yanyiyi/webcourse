@@ -17,13 +17,23 @@
         display: block;
         position: static;
     }
+    .screenSet {
+        position: static;
+    }
     .screenSet > .two{
         display: none;
     }
     .one, .two{
         width: 90%;
     }
-    
+    main{
+        margin-top: 0px;    
+    }
+    .warp{
+    display: inline;
+    margin-bottom: 25px;
+        color: #FFF;
+    }
 }
 
 @media print{
