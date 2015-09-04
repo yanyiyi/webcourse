@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CClist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <RoomList>
+        <Rid>1</Rid>
+        <RoriClass>資訊</RoriClass>
+        <Room>電腦教室</Room>
+    </RoomList>
+    <RoomList>
+        <Rid>2</Rid>
+        <RoriClass>自然</RoriClass>
+        <Room>自然科教室</Room>
+    </RoomList>
+    <RoomList>
+        <Rid>3</Rid>
+        <RoriClass>體育</RoriClass>
+        <Room>體育教室</Room>
+    </RoomList>
+    <RoomList>
+        <Rid>4</Rid>
+        <RoriClass>健教</RoriClass>
+        <Room>體育教室</Room>
+    </RoomList>
+    <RoomList>
+        <Rid>5</Rid>
+        <RoriClass>補英</RoriClass>
+        <Room>Michael Kuo 協同教學</Room>
+    </RoomList>
+</CClist>

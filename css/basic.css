@@ -83,12 +83,7 @@ h1{
     color: aliceblue;
 }
 
-@media screen and (max-width:720px){
-    #twoTable,#oneTable{
-        width:94%;
-        margin: 0 3%;
-    }       
-}
+
 .disable,.disable a{
     color: #aaa;
     font-size: 0.9em;

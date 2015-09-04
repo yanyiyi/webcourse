@@ -18,12 +18,15 @@
         var courseList = new Object();
         var classPairList = new Object();
 
-
+        var classRoom = new Object();
+        
 
         cc = 0;
         cc2 = 0;
         cc3 = 0;
         cc4 = 0;
+        cc5 = 0;
+        cc6 = 0;
         if (strUrl.indexOf("?") != -1) {
             var getSearch = strUrl.split("?");
             getPara = getSearch[1].split("&");
@@ -43,7 +46,7 @@
         if (aryPara["teacher2ID"] == "undefined") aryPara["teacher2ID"] = "";
 
         $.ajax({
-            url: './ClassPair.xml',
+            url: './Room.xml',
             type: 'GET',
             dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
             timeout: 1000,
@@ -59,12 +62,32 @@
                         // alert("採用「教室資料表」找不到，煩請管理員在資料夾中放入「ClassRoomList.xml」！");
                     },
                     success: function (xml) {
-                        //alert("教室對應表找到了，採用對應模式");
+                        //alert("教室對應表找到了，採用對應模式");                 
+                        
+                        
+                        
+                        
+                        
                     }
                 });
             },
             success: function (xml) {
-                alert("教室對應表找到了，採用對應模式");
+                
+                 $(xml).find("RoomList").each(function (i) { //取得xml父節點
+                   // alert("教室對應表找到了，採用對應模式");
+                      var total = $(xml).find("RoomList").length; //
+                     var Rid = $(this).children("Rid").text();
+                     var Rori = $(this).children("RoriClass").text();
+                     var Room = $(this).children("Room").text();
+                  
+                     
+                    classRoom[Rori] = Room;
+                    
+                 
+                 
+                 });
+                
+                
             }
         });
 
@@ -90,6 +113,10 @@
                     var whichDay = "1";
                     var whichSec = "1";
                     var exc = 0;
+                    
+                    
+                    
+                    
                     //製作選單列表
                     if (teacherList[classTeacher] >= 1) teacherList[classTeacher] ++;
                     else teacherList[classTeacher] = 1;
@@ -119,7 +146,7 @@
                                            
                                           classPairList[classTeacher + n] = className;
                                           exc = 1;
-                                            console.log("N:"+n+",老師:"+classTeacher+",課程:"+ className+",開關:"+ exc);
+                                            //console.log("N:"+n+",老師:"+classTeacher+",課程:"+ className+",開關:"+ exc);
                                           
                                         }
                                     }
@@ -200,7 +227,8 @@
                         if (whichSec > secCount) {
                             secCount = whichSec;
                         }
-
+                        
+                        
                         if (aryPara["class2ID"] != null || aryPara["teacher2ID"] != null) {
 
                             if (aryPara["class2ID"] != null && aryPara["class2ID"] != "") {
@@ -220,7 +248,7 @@
 
                                 }
 
-                                $("#twoTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?teacher2ID=" + _$(aryPara["teacher2ID"]) + "&classID=" + _$(Cclass) + "'>" + Cclass + "</span>");
+                                $("#twoTable ." + whichClass).append("<span class='cname'><a href='./?course=" + _$(className) + "&class2ID=" + _$(aryPara["class2ID"]) + "&course2=" + _$(aryPara["class2ID"]) +"&teacher2ID=" +_$(aryPara["teacher2ID"]) + "'>" + className + "</a></span><br><span class='tname'><a href='./?teacher2ID=" + _$(aryPara["teacher2ID"]) + "&classID=" + _$(Cclass) + "'>" + Cclass + "</span>");
 
                             }
 
@@ -296,7 +324,7 @@
                                     cc++;
                                 }
 
-                                $("#oneTable ." + whichClass).append("<span class='cname'>" + className + "</span><br><span class='tname'><a href='./?teacherID=" + _$(aryPara["teacherID"]) + "&class2ID=" + _$(Cclass) + "'>" + Cclass + "</span>");
+                                $("#oneTable ." + whichClass).append("<span class='cname'><a href='./?course2=" + _$(className) + "&classID=" + aryPara["classID"] + "&course=" + aryPara["course"] +"&teacherID=" + aryPara["teacherID"] + " '>" + className + "</a></span><br><span class='tname'><a href='./?teacherID=" + _$(aryPara["teacherID"]) + "&class2ID=" + _$(Cclass) + "'>" + Cclass + "</span>");
 
                             }
 
@@ -304,8 +332,30 @@
 
                     }
 
-
-
+if(aryPara["room1"] != null){
+                    Object.getOwnPropertyNames(classRoom).forEach(function (val, idx, array) {
+                    
+            if(className == val && aryPara["room1"] == classRoom[val] ){
+            if (cc5 == 0) $("#oneTable h1").append(classRoom[val]);
+            $("#oneTable ."+whichClass).append("<span class='cname'><a href='./?course2="+_$(className)+"  &room1="+_$(aryPara["room1"])+"'>"+className+"</a></span><br><span class='tname'><a href='./?teacher2ID="+ _$(classTeacher)+"&room1="+_$(aryPara["room1"])+"'>"+classTeacher+"</a></span><br><span class='tname classMark'><a href='./?class2ID="+_$(Cclass)+"&room1="+_$(aryPara["room1"])+"'>("+Cclass+")</a></span><br>");
+                cc5++;
+             }
+                        
+});
+    }
+                    
+if(aryPara["room2"] != null){
+                    Object.getOwnPropertyNames(classRoom).forEach(function (val, idx, array) {
+                    
+            if(className == val && aryPara["room2"] == classRoom[val] ){
+            if (cc6 == 0) $("#twoTable h1").append(classRoom[val]);
+            $("#twoTable ."+whichClass).append("<span class='cname'><a href='./?course="+_$(className)+"  &room2="+_$(aryPara["room1"])+"'>"+className+"</a></span><br><span class='tname'><a href='./?teacherID="+ _$(classTeacher)+"&room2="+_$(aryPara["room2"])+"'>"+classTeacher+"</a></span><br><span class='tname classMark'><a href='./?classID="+_$(Cclass)+"&room2="+_$(aryPara["room2"])+"'>("+Cclass+")</a></span><br>");
+                cc6++;
+             }
+                        
+});
+    }
+   
                 });
                 //                console.log(secCount);
                 if (secCount <= 7) secCount =7;
@@ -315,13 +365,15 @@
                 }
                 Object.getOwnPropertyNames(courseList).forEach(function (val, idx, array) {
                    
-                    $(".one .teacherList > ul").append("<li class='tcList" + val + "'><a href='./?course=" + val + "&class2ID=" + aryPara["class2ID"] + "&teacher2ID=" + aryPara["teacher2ID"] + "'>" + val + "</a><ul></ul></li>");
-                    $(".two .teacherList > ul").append("<li class='tcList" + val + "'><a href='./?course2=" + val + "&classID=" + aryPara["classID"] + "&teacherID=" + aryPara["teacherID"] + "'>" + val + "</a><ul></ul></li>");
                     
-                     $(".one .courseList > ul").append("<li><a href='./?course=" + val + "&class2ID=" + aryPara["class2ID"] + "&teacher2ID=" + aryPara["teacher2ID"] +"&course2=" + aryPara["course"]+ "'>" + val + "</a><ul></ul></li>");
                     
-                    $(".two .courseList > ul").append("<li><a href='./?course2=" + val + "&classID=" + aryPara["classID"] + "&teacherID=" + aryPara["teacherID"] +"&course=" + aryPara["course"]+ "'>" + val + "</a><ul></ul></li>");
-                
+                    $(".one .teacherList > ul").append("<li class='tcList" + val + "'><a href='./?course=" + _$(val) + "&class2ID=" + _$(aryPara["class2ID"]) + "&teacher2ID=" +_$(aryPara["teacher2ID"]) + "'>" + val + "</a><ul></ul></li>");
+                    $(".two .teacherList > ul").append("<li class='tcList" + val + "'><a href='./?course2=" + _$(val) + "&classID=" + aryPara["classID"] + "&teacherID=" + aryPara["teacherID"] + "'>" + val + "</a><ul></ul></li>");
+                    
+                     $(".one .courseList > ul").append("<li><a href='./?course=" + _$(val) + "&class2ID=" + _$(aryPara["class2ID"]) + "&teacher2ID=" +_$(aryPara["teacher2ID"]) +"&course2=" + aryPara["course"]+ "'>" + val + "</a><ul></ul></li>");
+                    
+                    $(".two .courseList > ul").append("<li><a href='./?course2=" + _$(val) + "&classID=" + aryPara["classID"] + "&teacherID=" + aryPara["teacherID"] +"&course=" + aryPara["course"]+ "'>" + val + "</a><ul></ul></li>");
+                if(val.substr(0,1) == "補") $(".tcList"+val).css("display","none");
                 });
 
 
@@ -331,9 +383,9 @@
                     var nTec = val.length;
                     nTec = val.substring(0, nTec - 1);
                     //console.log(val + "老師<>課" + classPairList[val]);
-                    $(".one .tcList" + classPairList[val] + " > ul").append("<li><a href='./?teacherID=" + nTec + "&class2ID=" + aryPara["class2ID"] + "&course2=" + aryPara["course2"] + "&teacher2ID=" + aryPara["teacher2ID"] + " '>" + nTec + "</li>");
+                    $(".one .tcList" + classPairList[val] + " > ul").append("<li><a href='./?teacherID=" + _$(nTec) + "&class2ID=" + _$(aryPara["class2ID"]) + "&course2=" + _$(aryPara["class2ID"]) + "&teacher2ID=" + _$(aryPara["teacher2ID"]) + " '>" + nTec + "</li>");
 
-                    $(".two .tcList" + classPairList[val] + " > ul").append("<li><a href='./?teacher2ID=" + nTec + "&classID=" + aryPara["classID"] + "&course=" + aryPara["course"] + "&teacherID=" + aryPara["teacherID"] + " '>" + nTec + "</li>");
+                    $(".two .tcList" + classPairList[val] + " > ul").append("<li><a href='./?teacher2ID=" + _$(nTec) + "&classID=" + aryPara["classID"] + "&course=" + aryPara["course"] + "&teacherID=" + aryPara["teacherID"] + " '>" + nTec + "</li>");
 
                 });
                 
@@ -384,9 +436,9 @@ function whichGrade(i){
 
                 Object.getOwnPropertyNames(classList).forEach(function (val, idx, array) {
                    var g = whichGrade(val);  
-                    $(".one .classList > ul > li"+g+" ul").append("<li><a href='./?classID=" + val + "&class2ID=" + aryPara["class2ID"] + "&course2=" + aryPara["course2"] + "&teacher2ID=" + aryPara["teacher2ID"] + " '>" + val + "</a></li>")
+                    $(".one .classList > ul > li"+g+" ul").append("<li><a href='./?classID=" + _$(val) + "&class2ID=" + _$(aryPara["class2ID"]) + "&course2=" + _$(aryPara["class2ID"]) + "&teacher2ID=" +_$(aryPara["teacher2ID"]) + " '>" + val + "</a></li>")
 
-                    $(".two .classList > ul > li"+g+ " ul").append("<li><a href='./?class2ID=" + val + "&classID=" + aryPara["classID"] + "&course=" + aryPara["course"] + "&teacherID=" + aryPara["teacherID"] + " '>" + val + "</a></li>")
+                    $(".two .classList > ul > li"+g+ " ul").append("<li><a href='./?class2ID=" + _$(val) + "&classID=" + aryPara["classID"] + "&course=" + aryPara["course"] + "&teacherID=" + aryPara["teacherID"] + " '>" + val + "</a></li>")
                 });
 
 
@@ -396,12 +448,15 @@ function whichGrade(i){
                 if (aryPara["course"] != null || aryPara["course"] != "") {
                     Object.getOwnPropertyNames(teacherObj).forEach(function (val, idx, array) {
                         //console.log(val + ' -> ' + teacherObj[val]);
-                        $("#oneTable td").append("<span class='disable tName" + val + "'>" + val + "</span><br>");
+                        $("#oneTable td").append("<span class='disable tName" + val + "'><a href='./?teacher2ID=" + _$(val) + "&classID=" + aryPara["classID"] + "&course=" + aryPara["course"] + " '>" + val + "</a></span><br>");
+                        
+                        
+                        
                         $("#oneTable .tName" + val + " .tName" + val).removeClass("disable");
                         $("#oneTable .tName" + val + " .tName" + val).addClass("tname");
 
                         for (var i in classObj) {
-                            $("#oneTable .tName" + val + i + " .tName" + val).append("<br><span class='classMark'>(" + i + ")</span>");
+                            $("#oneTable .tName" + val + i + " .tName" + val).append("<br><span class='classMark'><a href='./?class2ID=" + _$(i) + "&classID=" + aryPara["classID"] + "&course=" + aryPara["course"] +"&teacherID=" + aryPara["teacher"] + " '>(" + i + ")</span>");
 
                         }
                     });
@@ -410,21 +465,16 @@ function whichGrade(i){
                 if (aryPara["course2"] != null,aryPara["course2"] != "") {
                     Object.getOwnPropertyNames(teacherObj2).forEach(function (val, idx, array) {
                         //console.log(val + ' -> ' + teacherObj2[val]);
-                        $("#twoTable td").append("<span class='disable tName" + val + "'><a href='./?teacherID=" + val + "&classID2=" + aryPara["class2ID"] + "&course2=" + aryPara["course2"] + " '>" + val + "</span><br>");
+                        $("#twoTable td").append("<span class='disable tName" + val + "'><a href='./?teacherID=" + _$(val) + "&classID2=" + _$(aryPara["class2ID"]) + "&course2=" + _$(aryPara["class2ID"]) + " '>" + val + "</span><br>");
                         $("#twoTable .tName" + val + " .tName" + val).removeClass("disable");
                         $("#twoTable .tName" + val + " .tName" + val).addClass("tname");
 
-                        for (var i in classObj) {
-                            $("#twoTable .tName" + val + i + " .tName" + val).append("<br><span class='classMark'>(" + i + ")</span>");
+                        for (var i in classObj2) {
+                            $("#twoTable .tName" + val + i + " .tName" + val).append("<br><span class='classMark'><a href='./?classID=" + _$(i) + "&class2ID=" + _$(aryPara["class2ID"]) + "&course2=" + _$(aryPara["class2ID"]) +"&teacher2ID=" + aryPara["teacher2"] + " '>(" + i + ")</span>");
 
                         }
                     }); //end of ajax
                 }
-
-
-
-
-
 
                 function secCountUpate() {
                     if (whichSec > secCount) {
