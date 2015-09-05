@@ -1,0 +1,367 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>課表查詢雙視窗</title>
+    <link rel=stylesheet href="./css/basic.css">
+    <link rel=stylesheet href="./css/rwd.css">
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <!--[if lt IE 7]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js"></script>
+<![endif]-->
+    <!--[if lt IE 8]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
+<![endif]-->
+    <!--[if lt IE 9]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<![endif]-->
+    <script type="text/javascript" src="./js/xmlcourse_ie.js"></script>
+</head>
+
+<body>
+
+    <nav class="screenSet" id="oneNav">
+        <ul class="menuList one">
+            <li class="classList" onClick="">
+                班級<span>查詢</span><ul>
+                    <li class="c1" onClick="">一年級<ul></ul></li>
+                    <li class="c2" onClick="">二年級<ul></ul></li>
+                    <li class="c3" onClick="">三年級<ul></ul></li>
+                 <li
+class="c7">七年級<ul></ul></li> 
+                    <li class="c8" onClick="">八年級<ul></ul></li>
+                    <li class="c9" onClick="">九年級<ul></ul></li>
+                </ul>
+        </li>
+            <li class="teacherList" onClick="">
+                教師<span>查詢</span><ul>
+
+                </ul>
+            </li>
+            <li class="courseList" onClick="">
+                科目<span>查詢</span><ul></ul>
+            </li>
+            
+             <li class="roomList" onClick="">
+                <span>特殊教室</span><ul></ul>
+            </li>
+            
+        </ul>
+        <ul class="menuList two">
+            <li class="classList" onClick="">
+                班級<span>查詢</span><ul>
+                    <li class="c1" onClick="">一年級<ul></ul></li>
+                    <li class="c2" onClick="">二年級<ul></ul></li>
+                    <li class="c3" onClick="">三年級<ul></ul></li>
+                 <li
+class="c7">七年級<ul></ul></li> 
+                    <li class="c8" onClick="">八年級<ul></ul></li>
+                    <li class="c9" onClick="">九年級<ul></ul></li>
+                </ul>
+        </li>
+            <li class="teacherList">
+                教師<span>查詢</span><ul>
+
+                </ul>
+            </li>
+            <li class="courseList">
+                科目<span>查詢</span><ul></ul>
+            </li>
+            
+             <li class="roomList">
+                <span>特殊教室</span><ul></ul>
+            </li>
+            
+        </ul>
+        
+
+    </nav>
+    <main>
+        <div id="oneTable">
+
+            <h1 class="tTitle"></h1>
+           
+            <table>
+                <tr>
+                    <th class="t00" >節/周</th>
+                    <th class="t01">一</th>
+                    <th class="t02">二</th>
+                    <th class="t03">三</th>
+                    <th class="t04">四</th>
+                    <th class="t05">五</th>
+                </tr>
+                <tr class="t1r">
+                    <th class="t10">1</th>
+                    <td class="t11"></td>
+                    <td class="t12"></td>
+                    <td class="t13"></td>
+                    <td class="t14"></td>
+                    <td class="t15"></td>
+                </tr>
+
+                <tr class="t2r">
+                    <th class="t20">2</th>
+                    <td class="t21"></td>
+                    <td class="t22"></td>
+                    <td class="t23"></td>
+                    <td class="t24"></td>
+                    <td class="t25"></td>
+                </tr>
+                <tr class="t3r">
+                    <th class="t30">3</th>
+                    <td class="t31"></td>
+                    <td class="t32"></td>
+                    <td class="t33"></td>
+                    <td class="t34"></td>
+                    <td class="t35"></td>
+                </tr>
+                <tr class="t4r">
+                    <th class="t40">4</th>
+                    <td class="t41"></td>
+                    <td class="t42"></td>
+                    <td class="t43"></td>
+                    <td class="t44"></td>
+                    <td class="t45"></td>
+                </tr>
+                <tr class="t5r">
+                    <th colspan="6" class="sleep">午休時間</th>
+                </tr>
+                <tr class="t5r">
+                    <th class="t50">5</th>
+
+                    <td class="t51"></td>
+                    <td class="t52"></td>
+                    <td class="t53"></td>
+                    <td class="t54"></td>
+                    <td class="t55"></td>
+                </tr>
+                <tr class="t6r">
+                    <th class="t60">6</th>
+                    <td class="t61"></td>
+                    <td class="t62"></td>
+                    <td class="t63"></td>
+                    <td class="t64"></td>
+                    <td class="t65"></td>
+                </tr>
+                <tr class="t7r">
+                    <th class="t70">7</th>
+                    <td class="t71"></td>
+                    <td class="t72"></td>
+                    <td class="t73"></td>
+                    <td class="t74"></td>
+                    <td class="t75"></td>
+                </tr>
+                <tr class="t8r">
+                    <th class="t80">8</th>
+                    <td class="t81"></td>
+                    <td class="t82"></td>
+                    <td class="t83"></td>
+                    <td class="t84"></td>
+                    <td class="t85"></td>
+                </tr>
+
+                <tr class="t9r">
+                    <th colspan="6" class="sleep">晚間休息</th>
+                </tr>
+
+
+                <tr class="t9r">
+                    <th class="t90">9</th>
+                    <td class="t91"></td>
+                    <td class="t92"></td>
+                    <td class="t93"></td>
+                    <td class="t94"></td>
+                    <td class="t95"></td>
+                </tr>
+
+                <tr class="t10r">
+                    <th class="t100">10</th>
+                    <td class="t101"></td>
+                    <td class="t102"></td>
+                    <td class="t103"></td>
+                    <td class="t104"></td>
+                    <td class="t105"></td>
+                </tr>
+                <tr class="t11r">
+                    <th class="t110">11</th>
+                    <td class="t111"></td>
+                    <td class="t112"></td>
+                    <td class="t113"></td>
+                    <td class="t114"></td>
+                    <td class="t115"></td>
+                </tr>
+                <tr class="t12r">
+                    <th class="t112">12</th>
+                    <td class="t112"></td>
+                    <td class="t112"></td>
+                    <td class="t112"></td>
+                    <td class="t112"></td>
+                    <td class="t112"></td>
+                </tr>
+
+
+            </table>
+
+        </div>
+        <nav class="mobileSet" id="twoNav">
+                  <ul class="menuList two">
+            <li class="classList" onClick="">
+                班級<span>查詢</span><ul>
+                    <li class="c1" onClick="">一年級<ul></ul></li>
+                    <li class="c2" onClick="">二年級<ul></ul></li>
+                    <li class="c3" onClick="">三年級<ul></ul></li>
+                 <li
+class="c7">七年級<ul></ul></li> 
+                    <li class="c8" onClick="">八年級<ul></ul></li>
+                    <li class="c9" onClick="">九年級<ul></ul></li>
+                </ul>
+        </li>
+            <li class="teacherList" onClick="">
+                教師<span>查詢</span><ul>
+
+                </ul>
+            </li>
+            <li class="courseList" onClick="">
+                科目<span>查詢</span><ul></ul>
+            </li>
+            
+             <li class="roomList" onClick="">
+                <span>特殊教室</span><ul></ul>
+            </li>
+            
+        </ul>
+        </nav>
+        
+        <div id="twoTable">
+            <h1 class="tTitle"></h1>
+            
+            <table>
+                <tr>
+                    <th class="t00">節/周</th>
+                    <th class="t01">一</th>
+                    <th class="t02">二</th>
+                    <th class="t03">三</th>
+                    <th class="t04">四</th>
+                    <th class="t05">五</th>
+                </tr>
+                <tr class="t1r">
+                    <th class="t10">1</th>
+                    <td class="t11"></td>
+                    <td class="t12"></td>
+                    <td class="t13"></td>
+                    <td class="t14"></td>
+                    <td class="t15"></td>
+                </tr>
+
+                <tr class="t2r">
+                    <th class="t20">2</th>
+                    <td class="t21"></td>
+                    <td class="t22"></td>
+                    <td class="t23"></td>
+                    <td class="t24"></td>
+                    <td class="t25"></td>
+                </tr>
+                <tr class="t3r">
+                    <th class="t30">3</th>
+                    <td class="t31"></td>
+                    <td class="t32"></td>
+                    <td class="t33"></td>
+                    <td class="t34"></td>
+                    <td class="t35"></td>
+                </tr>
+                <tr class="t4r">
+                    <th class="t40">4</th>
+                    <td class="t41"></td>
+                    <td class="t42"></td>
+                    <td class="t43"></td>
+                    <td class="t44"></td>
+                    <td class="t45"></td>
+                </tr>
+                <tr class="t5r">
+                    <th colspan="6" class="sleep">午休時間</th>
+                </tr>
+                <tr class="t5r">
+                    <th class="t50">5</th>
+                    <td class="t51"></td>
+                    <td class="t52"></td>
+                    <td class="t53"></td>
+                    <td class="t54"></td>
+                    <td class="t55"></td>
+                </tr>
+                <tr class="t6r">
+                    <th class="t60">6</th>
+                    <td class="t61"></td>
+                    <td class="t62"></td>
+                    <td class="t63"></td>
+                    <td class="t64"></td>
+                    <td class="t65"></td>
+                </tr>
+                <tr class="t7r">
+                    <th class="t70">7</th>
+                    <td class="t71"></td>
+                    <td class="t72"></td>
+                    <td class="t73"></td>
+                    <td class="t74"></td>
+                    <td class="t75"></td>
+                </tr>
+                <tr class="t8r">
+                    <th class="t80">8</th>
+                    <td class="t81"></td>
+                    <td class="t82"></td>
+                    <td class="t83"></td>
+                    <td class="t84"></td>
+                    <td class="t85"></td>
+                </tr>
+
+                <tr class="t9r">
+                    <th colspan="6" class="sleep">晚間休息</th>
+                </tr>
+
+
+                <tr class="t9r">
+                    <th class="t90">9</th>
+                    <td class="t91"></td>
+                    <td class="t92"></td>
+                    <td class="t93"></td>
+                    <td class="t94"></td>
+                    <td class="t95"></td>
+                </tr>
+
+                <tr class="t10r">
+                    <th class="t100">10</th>
+                    <td class="t101"></td>
+                    <td class="t102"></td>
+                    <td class="t103"></td>
+                    <td class="t104"></td>
+                    <td class="t105"></td>
+                </tr>
+                <tr class="t11r">
+                    <th class="t110">11</th>
+                    <td class="t111"></td>
+                    <td class="t112"></td>
+                    <td class="t113"></td>
+                    <td class="t114"></td>
+                    <td class="t115"></td>
+                </tr>
+                <tr class="t12r">
+                    <th class="t112">12</th>
+                    <td class="t112"></td>
+                    <td class="t112"></td>
+                    <td class="t112"></td>
+                    <td class="t112"></td>
+                    <td class="t112"></td>
+                </tr>
+
+
+            </table>
+
+        </div>
+    </main>
+    <footer>
+</footer>
+</body>
+
+</html>

@@ -1,8 +1,9 @@
-    function _$(i) {
-            var j = encodeURIComponent(i);
-            return j;
-        }
+function _$(i) {
+        var j = encodeURIComponent(i);
+        return j;
+}
        
+        
 
         var strUrl = decodeURIComponent(location.search);
         var getPara, ParaVal;
@@ -28,6 +29,10 @@
         cc4 = 0;
         cc5 = 0;
         cc6 = 0;
+
+    
+
+        
         if (strUrl.indexOf("?") != -1) {
             var getSearch = strUrl.split("?");
             getPara = getSearch[1].split("&");
@@ -50,7 +55,7 @@
             url: './Room.xml',
             type: 'GET',
             dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
-            timeout: 10000,
+            timeout: 1000,
             error: function (xml) {
                 //alert("教室對應表找不到，採用撈資料模式，煩請管理員在資料夾中放入「ClassPair.xml」！");
                 $.ajax({
@@ -76,7 +81,7 @@
                 
                  $(xml).find("RoomList").each(function (i) { //取得xml父節點
                    // alert("教室對應表找到了，採用對應模式");
-                      var total = $(xml).find("RoomList").length; //
+                     var total = $(xml).find("RoomList").length; //
                      var Rid = $(this).children("Rid").text();
                      var Rori = $(this).children("RoriClass").text();
                      var Room = $(this).children("Room").text();
@@ -98,7 +103,7 @@
             url: './ClassProcessing.xml',
             type: 'GET',
             dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
-            timeout: 10000,
+            timeout: 1000,
             error: function (xml) {
                 alert('讀取xml錯誤' + xml); //當xml讀取失敗
             },
@@ -178,8 +183,6 @@
                         break;
 
                     }
-
-
                     switch (classSec) {
                     case "第一節":
                         whichSec = 1;
@@ -378,8 +381,6 @@ if(aryPara["room2"] != null){
                 });
 
 
-
-
                 Object.getOwnPropertyNames(classPairList).forEach(function (val, idx, array) {
                     var nTec = val.length;
                     nTec = val.substring(0, nTec - 1);
@@ -451,7 +452,7 @@ Object.getOwnPropertyNames(classRoom).forEach(function (val, idx, array) {
 
 
                 if (aryPara["course"] != null || aryPara["course"] != "") {
-                    Object.getOwnPropertyNames(teacherObj).forEach(function (val, idx, array) {
+   alert(Object.keys(teacherObj));                 Object.getOwnPropertyNames(teacherObj).forEach(function (val, idx, array) {
                         //console.log(val + ' -> ' + teacherObj[val]);
                         $("#oneTable td").append("<span class='disable tName" + val + "'><a href='./?teacher2ID=" + _$(val) + "&classID=" + aryPara["classID"] + "&course=" + aryPara["course"] + " '>" + val + "</a></span><br>");
                         
