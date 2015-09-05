@@ -367,8 +367,8 @@ if(aryPara["room2"] != null){
                    
                     
                     
-                    $(".one .teacherList > ul").append("<li class='tcList" + val + "'><a href='./?course=" + _$(val) + "&class2ID=" + _$(aryPara["class2ID"]) + "&teacher2ID=" +_$(aryPara["teacher2ID"]) + "'>" + val + "</a><ul></ul></li>");
-                    $(".two .teacherList > ul").append("<li class='tcList" + val + "'><a href='./?course2=" + _$(val) + "&classID=" + aryPara["classID"] + "&teacherID=" + aryPara["teacherID"] + "'>" + val + "</a><ul></ul></li>");
+                    $(".one .teacherList > ul").append("<li onClick='' class='tcList" + val + "'><a href='./?course=" + _$(val) + "&class2ID=" + _$(aryPara["class2ID"]) + "&teacher2ID=" +_$(aryPara["teacher2ID"]) + "'>" + val + "</a><ul></ul></li>");
+                    $(".two .teacherList > ul").append("<li onClick='' class='tcList" + val + "'><a href='./?course2=" + _$(val) + "&classID=" + aryPara["classID"] + "&teacherID=" + aryPara["teacherID"] + "'>" + val + "</a><ul></ul></li>");
                     
                      $(".one .courseList > ul").append("<li><a href='./?course=" + _$(val) + "&class2ID=" + _$(aryPara["class2ID"]) + "&teacher2ID=" +_$(aryPara["teacher2ID"]) +"&course2=" + aryPara["course"]+ "'>" + val + "</a><ul></ul></li>");
                     
