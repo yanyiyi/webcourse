@@ -5,6 +5,7 @@
     position:relative;
     width: 100%;
     background-color: rgba(0,0,0,0.5);
+    background-image: url(../img/bk.png);
 }
 
 
@@ -33,6 +34,21 @@
     display: inline;
     margin-bottom: 25px;
         color: #FFF;
+    }
+    nav div{
+            width:30%;
+    z-index: 5;
+    position: fixed;
+    height: 40px;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    right: 35%;
+    bottom: 0%;
+    background: rgba(0,0,0,0.5);
+    border-radius: 20px 20px 0px 0px ;
+-moz-border-radius: 20px 20px 0px 0px ;
+-webkit-border-radius: 20px 20px 0px 0px ;
+    line-height: 120%;
     }
 }
 

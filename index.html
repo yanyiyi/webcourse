@@ -19,10 +19,47 @@
 <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
 <![endif]-->
     <script type="text/javascript" src="./js/xmlcourse.js"></script>
+     <script type="text/javascript" src="./js/spin.js"></script>
+<!--      <script type="text/javascript" src="./js/load.js"></script>-->
+<script>
+    $(document).ready(function () {
+var opts = {
+  lines: 13 // The number of lines to draw
+, length: 28 // The length of each line
+, width: 14 // The line thickness
+, radius: 84 // The radius of the inner circle
+, scale: 0.5 // Scales overall size of the spinner
+, corners: 0.6 // Corner roundness (0..1)
+, color: '#fff' // #rgb or #rrggbb or array of colors
+, opacity: 0.4 // Opacity of the lines
+, rotate: 0 // The rotation offset
+, direction: 1 // 1: clockwise, -1: counterclockwise
+, speed: 1 // Rounds per second
+, trail: 60 // Afterglow percentage
+, fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+, zIndex: 2e9 // The z-index (defaults to 2000000000)
+, className: 'spinner' // The CSS class to assign to the spinner
+, top: '50%' // Top position relative to parent
+, left: '50%' // Left position relative to parent
+, shadow: true // Whether to render a shadow
+, hwaccel: true // Whether to use hardware acceleration
+, position: 'absolute' // Element positioning
+}
+var target = document.getElementById('foo')
+var spinner = new Spinner(opts).spin(target);
+});
+
+    
+    </script>
 </head>
 
 <body>
-
+    <div class="loading" id="foo">
+        <div id="loadprocess">查詢課程資料庫中，請稍候<br>
+    <span class="percent"></span><span class="loadall"></span>
+    </div>
+    </div>
+   
     <nav class="screenSet" id="oneNav">
         <ul class="menuList one">
             <li class="classList" onClick="">
@@ -50,6 +87,7 @@ class="c7">七年級<ul></ul></li>
             </li>
             
         </ul>
+        <div>杉林國中<br>課表查詢系統</div>
         <ul class="menuList two">
             <li class="classList" onClick="">
                 班級<span>查詢</span><ul>
@@ -380,7 +418,8 @@ class="c7">七年級<ul></ul></li>
 本網站採用 MIT 授權，建議使用IE9以上或其他現代瀏覽器使用 <br>
 The MIT License (MIT) Copyright (c) 2015 <a href="mailto:chunyan.liu@yannest.net">ChunYanLiu (Yanyiyi)</a> &amp; 朱駿錫
 <br>
-Fork This Project on GITHUB
+<a href="https://github.com/yanyiyi/webcourse">
+Fork This Project on GITHUB</a>
 </footer>
 </body>
 
