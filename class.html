@@ -1,0 +1,422 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>課表查詢雙視窗</title>
+    <link rel=stylesheet href="./css/basic.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
+    <script>
+        var strUrl = decodeURIComponent(location.search);
+        var getPara, ParaVal;
+        var aryPara = [];
+        var cc, cc2;
+        var secCount = 0;
+        var teacherObj = new Object();
+        var classObj = new Object();
+        cc = 0;
+        cc2 = 0;
+        if (strUrl.indexOf("?") != -1) {
+            var getSearch = strUrl.split("?");
+            getPara = getSearch[1].split("&");
+            for (i = 0; i < getPara.length; i++) {
+                ParaVal = getPara[i].split("=");
+                aryPara.push(ParaVal[0]);
+                aryPara[ParaVal[0]] = ParaVal[1];
+            }
+
+        }
+
+        for (var i; i <= 12; i++) {
+
+
+        }
+
+
+        $.ajax({
+            url: './ClassProcessing.xml',
+            type: 'GET',
+            dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
+            timeout: 1000,
+            error: function (xml) {
+                alert('讀取xml錯誤' + xml); //當xml讀取失敗
+            },
+            success: function (xml) {
+                $(xml).find("ClassList").each(function (i) { //取得xml父節點       
+                    var total = $(xml).find("ClassList").length; //xml的總筆數
+                    var classDay = $(this).children("Cday").text();
+                    var classSec = $(this).children("Csection").text();
+                    var classTeacher = $(this).children("Cteacher").text();
+                    var className = $(this).children("className").text();
+                    var Cclass = $(this).children("Cclass").text();
+                    var whichClass = "t";
+                    var whichDay = "1";
+                    var whichSec = "1";
+
+                    switch (classDay) {
+                            
+                    case "週一":
+                        whichDay =1;
+                        break;
+                    case "週二":
+                        whichDay =2;
+                        break;
+                    case "週三":
+                        whichDay =3;
+                        break;
+                    case "週四":
+                        whichDay =4;
+                        break;
+                    case "週五":
+                        whichDay =5;
+                        break;
+                    
+                    }
+                    
+                    
+                    switch (classSec) {
+                    case "第一節":
+                        whichSec =1;
+                        break;
+                    case "第二節":
+                        whichSec =2;
+                        break;
+                    case "第三節":
+                        whichSec =3;
+                        break;
+                    case "第四節":
+                        whichSec =4;
+                        break;
+                    case "第五節":
+                        whichSec =5;
+                        break;
+                    case "第六節":
+                        whichSec =6;
+                        break;
+                    case "第七節":
+                        whichSec =7;
+                        break;
+                    case "第八節":
+                        whichSec =8;
+                        break;
+                    case "第九節":
+                        whichSec =9;
+                        break;
+                    case "第十節":
+                        whichSec =10;
+                        break;
+                    case "第十一節":
+                        whichSec =11;
+                        break;
+                    case "第十二節":
+                        whichSec =12;
+                        break;
+                    
+                    }
+                    whichClass = whichClass.concat(whichSec);
+                    whichClass = whichClass.concat(whichDay);
+                    
+                   
+
+         if (className == aryPara["course"]){
+             
+             if(teacherObj[classTeacher] >= 1) teacherObj[classTeacher]++;      
+            else teacherObj[classTeacher] = 1;
+            $("."+whichClass).addClass("tName"+classTeacher);
+            $("."+whichClass).addClass("tName"+classTeacher+Cclass);
+             classObj[Cclass] = Cclass;
+             
+             if (whichSec > secCount) {
+                secCount = whichSec;}  
+   
+         }
+                     
+               
+
+                });
+//                console.log(secCount);
+                
+                for (var i = secCount + 1; i <= 12; i++) {
+                    $(".t" + i + "r").css("display", "none");
+                }
+                
+                Object.getOwnPropertyNames(teacherObj).forEach(function(val, idx, array) {
+  console.log(val + ' -> ' + teacherObj[val]);
+                 $("td").append("<span class='disable tName"+val+"'>"+val+"</span><br>");
+                    $(".tName"+val+" .tName"+val).removeClass("disable");
+                    $(".tName"+val+" .tName"+val).addClass("tname");
+                    
+                    for(var i in classObj){
+                         $(".tName"+val+i+" .tName"+val).append("<br><span class='classMark'>("+i+")</span>");
+                       
+                    }           
+                });
+                   
+                
+               
+// logs
+// 0 -> a
+// 1 -> b
+// 2 -> c
+                
+                $("#oneTable").css("display", "block");
+                $("#twoTable").css("display", "block");
+            }
+
+
+        })
+    </script>
+</head>
+
+<body>
+
+    <div id="oneTable">
+        <h1 class="tTitle"></h1>
+        <table>
+            <tr>
+                <th class="t00">節/周</th>
+                <th class="t01">一</th>
+                <th class="t02">二</th>
+                <th class="t03">三</th>
+                <th class="t04">四</th>
+                <th class="t05">五</th>
+            </tr>
+            <tr class="t1r">
+                <th class="t10">1</th>
+                <td class="t11"></td>
+                <td class="t12"></td>
+                <td class="t13"></td>
+                <td class="t14"></td>
+                <td class="t15"></td>
+            </tr>
+
+            <tr class="t2r">
+                <th class="t20">2</th>
+                <td class="t21"></td>
+                <td class="t22"></td>
+                <td class="t23"></td>
+                <td class="t24"></td>
+                <td class="t25"></td>
+            </tr>
+            <tr class="t3r">
+                <th class="t30">3</th>
+                <td class="t31"></td>
+                <td class="t32"></td>
+                <td class="t33"></td>
+                <td class="t34"></td>
+                <td class="t35"></td>
+            </tr>
+            <tr class="t4r">
+                <th class="t40">4</th>
+                <td class="t41"></td>
+                <td class="t42"></td>
+                <td class="t43"></td>
+                <td class="t44"></td>
+                <td class="t45"></td>
+            </tr>
+            <tr class="t5r">
+                <th colspan="6" class="sleep">午休時間</th>
+            </tr>
+            <tr class="t5r">
+                <th class="t50">5</th>
+                
+                <td class="t51"></td>
+                <td class="t52"></td>
+                <td class="t53"></td>
+                <td class="t54"></td>
+                <td class="t55"></td>
+            </tr>
+            <tr class="t6r">
+                <th class="t60">6</th>
+                <td class="t61"></td>
+                <td class="t62"></td>
+                <td class="t63"></td>
+                <td class="t64"></td>
+                <td class="t65"></td>
+            </tr>
+            <tr class="t7r">
+                <th class="t70">7</th>
+                <td class="t71"></td>
+                <td class="t72"></td>
+                <td class="t73"></td>
+                <td class="t74"></td>
+                <td class="t75"></td>
+            </tr>
+            <tr class="t8r">
+                <th class="t80">8</th>
+                <td class="t81"></td>
+                <td class="t82"></td>
+                <td class="t83"></td>
+                <td class="t84"></td>
+                <td class="t85"></td>
+            </tr>
+
+            <tr class="t9r">
+                <th colspan="6" class="sleep">晚間休息</th>
+            </tr>
+
+
+            <tr class="t9r">
+                <th class="t90">9</th>
+                <td class="t91"></td>
+                <td class="t92"></td>
+                <td class="t93"></td>
+                <td class="t94"></td>
+                <td class="t95"></td>
+            </tr>
+
+            <tr class="t10r">
+                <th class="t100">10</th>
+                <td class="t101"></td>
+                <td class="t102"></td>
+                <td class="t103"></td>
+                <td class="t104"></td>
+                <td class="t105"></td>
+            </tr>
+            <tr class="t11r">
+                <th class="t110">11</th>
+                <td class="t111"></td>
+                <td class="t112"></td>
+                <td class="t113"></td>
+                <td class="t114"></td>
+                <td class="t115"></td>
+            </tr>
+            <tr class="t12r">
+                <th class="t112">12</th>
+                <td class="t112"></td>
+                <td class="t112"></td>
+                <td class="t112"></td>
+                <td class="t112"></td>
+                <td class="t112"></td>
+            </tr>
+
+
+        </table>
+
+    </div>
+    <div id="twoTable">
+        <h1 class="tTitle"></h1>
+        <table>
+            <tr>
+                <th class="t00">節/周</th>
+                <th class="t01">一</th>
+                <th class="t02">二</th>
+                <th class="t03">三</th>
+                <th class="t04">四</th>
+                <th class="t05">五</th>
+            </tr>
+            <tr class="t1r">
+                <th class="t10">1</th>
+                <td class="t11"></td>
+                <td class="t12"></td>
+                <td class="t13"></td>
+                <td class="t14"></td>
+                <td class="t15"></td>
+            </tr>
+
+            <tr class="t2r">
+                <th class="t20">2</th>
+                <td class="t21"></td>
+                <td class="t22"></td>
+                <td class="t23"></td>
+                <td class="t24"></td>
+                <td class="t25"></td>
+            </tr>
+            <tr class="t3r">
+                <th class="t30">3</th>
+                <td class="t31"></td>
+                <td class="t32"></td>
+                <td class="t33"></td>
+                <td class="t34"></td>
+                <td class="t35"></td>
+            </tr>
+            <tr class="t4r">
+                <th class="t40">4</th>
+                <td class="t41"></td>
+                <td class="t42"></td>
+                <td class="t43"></td>
+                <td class="t44"></td>
+                <td class="t45"></td>
+            </tr>
+            <tr class="t5r">
+                <th colspan="6" class="sleep">午休時間</th>
+            </tr>
+            <tr class="t5r">
+                <th class="t50">5</th>
+                <td class="t51"></td>
+                <td class="t52"></td>
+                <td class="t53"></td>
+                <td class="t54"></td>
+                <td class="t55"></td>
+            </tr>
+            <tr class="t6r">
+                <th class="t60">6</th>
+                <td class="t61"></td>
+                <td class="t62"></td>
+                <td class="t63"></td>
+                <td class="t64"></td>
+                <td class="t65"></td>
+            </tr>
+            <tr class="t7r">
+                <th class="t70">7</th>
+                <td class="t71"></td>
+                <td class="t72"></td>
+                <td class="t73"></td>
+                <td class="t74"></td>
+                <td class="t75"></td>
+            </tr>
+            <tr class="t8r">
+                <th class="t80">8</th>
+                <td class="t81"></td>
+                <td class="t82"></td>
+                <td class="t83"></td>
+                <td class="t84"></td>
+                <td class="t85"></td>
+            </tr>
+
+            <tr class="t9r">
+                <th colspan="6" class="sleep">晚間休息</th>
+            </tr>
+
+
+            <tr class="t9r">
+                <th class="t90">9</th>
+                <td class="t91"></td>
+                <td class="t92"></td>
+                <td class="t93"></td>
+                <td class="t94"></td>
+                <td class="t95"></td>
+            </tr>
+
+            <tr class="t10r">
+                <th class="t100">10</th>
+                <td class="t101"></td>
+                <td class="t102"></td>
+                <td class="t103"></td>
+                <td class="t104"></td>
+                <td class="t105"></td>
+            </tr>
+            <tr class="t11r">
+                <th class="t110">11</th>
+                <td class="t111"></td>
+                <td class="t112"></td>
+                <td class="t113"></td>
+                <td class="t114"></td>
+                <td class="t115"></td>
+            </tr>
+            <tr class="t12r">
+                <th class="t112">12</th>
+                <td class="t112"></td>
+                <td class="t112"></td>
+                <td class="t112"></td>
+                <td class="t112"></td>
+                <td class="t112"></td>
+            </tr>
+
+
+        </table>
+
+    </div>
+</body>
+
+</html>

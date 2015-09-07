@@ -1,0 +1,55 @@
+.mobileSet{
+    float: left;
+    display: none;
+    height: 50px;
+    position:relative;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+
+@media screen and (max-width:720px){
+    #twoTable,#oneTable{
+        width:94%;
+        margin: 3%;    
+    }
+    .mobileSet{
+        display: block;
+        position: static;
+    }
+    .screenSet {
+        position: static;
+    }
+    .screenSet > .two{
+        display: none;
+    }
+    .one, .two{
+        width: 90%;
+    }
+    main{
+        margin-top: 0px;    
+    }
+    .warp{
+    display: inline;
+    margin-bottom: 25px;
+        color: #FFF;
+    }
+}
+
+@media print{
+    
+    nav{
+        display: none;
+    }
+    html,body{
+        background: #FFF;
+        color: black;
+    }
+    table,tr,th,td{
+        margin: 0;
+        border: 1px solid #222;
+    }
+    h1{
+        color: black;
+    }
+}
