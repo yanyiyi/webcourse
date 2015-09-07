@@ -36,13 +36,13 @@
         color: #FFF;
     }
     nav div{
-            width:30%;
+            width:40%;
     z-index: 5;
     position: fixed;
     height: 40px;
     color: rgba(255,255,255,0.5);
     text-align: center;
-    right: 35%;
+    right: 30%;
     bottom: 0%;
     background: rgba(0,0,0,0.5);
     border-radius: 20px 20px 0px 0px ;
