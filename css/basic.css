@@ -226,6 +226,10 @@ footer{
     height: 50px;
     clear: both;
     padding-top: 25px;
+    font-size: 0.3em;
+}
+footer.a{
+    color: #FFF;
 }
 html,body{
     font-family:"微軟正黑體",Sans-serif,Hiragino Sans W1,;
