@@ -146,7 +146,7 @@ function _$(i) {
  
 
     $.ajax({
-        url: './OtherSchool/ClassProcessing.xml',
+        url: './ClassProcessing.xml',
         type: 'GET',
         dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html_
         timeout: 10000,
