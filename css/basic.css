@@ -7,12 +7,12 @@ a:hover{
     text-decoration: none;
 }
 #oneTable .tname,#oneTable .tname a{
-    color: dodgerblue;
+    color: #125596;
     font-size: 0.9em;
     text-decoration: none;
 }
 #twoTable .tname,#twoTable .tname a{
-    color: #5c995c; 
+    color: #336633; 
     font-size: 0.9em;
     text-decoration: none;
 }
@@ -258,4 +258,20 @@ nav div{
 -moz-border-radius: 0px 0px 20px 20px;
 -webkit-border-radius: 0px 0px 20px 20px;
     line-height: 150%;
+}
+.loading{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background: rgba(255,255,255,0.6);
+    
+}
+#loadprocess{
+    height: 10%;
+    width: 20%;
+    position: fixed;
+    right: 40%;
+    top:67.5%;
+    color: #666;
+    text-align: center;
 }

@@ -85,7 +85,7 @@ function _$(i) {
                     var startMin = $(this).children("startMin").text();
                     var endTime = $(this).children("endTime").text();
                     var endMin = $(this).children("endMin").text();
-
+                        
                         $(".t"+(i+1)+"0").html(newSec+"<br><span class='time'>"+startTime+":"+startMin+"<br>|<br>"+endTime+":"+endMin+"</span>");
                         
                         if( (i+1) == 5 && startTime >= 12) $(".t6r.lunchtime").css("display","none");
@@ -146,7 +146,7 @@ function _$(i) {
  
 
     $.ajax({
-        url: './ClassProcessing.xml',
+        url: './OtherSchool/ClassProcessing_longer.xml',
         type: 'GET',
         dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html_
         timeout: 10000,
@@ -165,7 +165,7 @@ function _$(i) {
                 var whichDay = "1";
                 var whichSec = "1";
                 var exc = 0;
-
+              
                 //製作選單列表
                 if (teacherList[classTeacher] >= 1) teacherList[classTeacher] ++;
                 else teacherList[classTeacher] = 1;
@@ -403,6 +403,9 @@ function _$(i) {
                     });
                 }
 
+                $(".loadall").text(total);
+                $(".percent").text(i+"/");
+                
             });
             //                console.log(secCount);
             if (secCount <= 7) secCount = 7;
@@ -478,7 +481,7 @@ function _$(i) {
 
             }
 
-
+            
 
             Object.getOwnPropertyNames(classList).forEach(function (val, idx, array) {
                 var g = whichGrade(val);
@@ -543,7 +546,9 @@ function _$(i) {
                 $(".teacherList > ul > li > a ").removeAttr("href");
 
             }
+            $("#foo").css("display","none");
         }
 
-
+            
     });
+
