@@ -503,7 +503,7 @@ function _$(i) {
             if (aryPara["course"] != null || aryPara["course"] != "") {
                 Object.getOwnPropertyNames(teacherObj).forEach(function (val, idx, array) {
                     //console.log(val + ' -> ' + teacherObj[val]);
-                    $("#oneTable td").append("<span class='disable tName" + val + "'><a href='./?teacher2ID=" + _$(val) + "&classID=" + aryPara["classID"] + "&course=" + aryPara["course"] + " '>" + val + "</a></span><br>");
+                    $("#oneTable td").append("<span class='disable tName" + val + "'><a href='./?teacher2ID=" + _$(val) + "&classID=" + _$(aryPara["classID"]) + "&course=" + _$(aryPara["course"]) + " '>" + val + "</a></span><br>");
 
 
 
@@ -511,7 +511,7 @@ function _$(i) {
                     $("#oneTable .tName" + val + " .tName" + val).addClass("tname");
 
                     for (var i in classObj) {
-                        $("#oneTable .tName" + val + i + " .tName" + val).append("<br><span class='classMark'><a href='./?class2ID=" + _$(i) + "&classID=" + aryPara["classID"] + "&course=" + aryPara["course"] + "&teacherID=" + aryPara["teacher"] + " '>(" + i + ")</span>");
+                        $("#oneTable .tName" + val + i + " .tName" + val).append("<br><span class='classMark'><a href='./?class2ID=" + _$(i) + "&classID=" + _$(aryPara["classID"]) + "&course=" + _$(aryPara["course"]) + "&teacherID=" + _$(aryPara["teacher"]) + " '>(" + i + ")</span>");
 
                     }
                 });
@@ -542,8 +542,10 @@ function _$(i) {
 
             if ($(window).width() <= 720) {
                 // is mobile device
-                alert("歡迎使用「杉林國中」課表交查查詢系統手機版，手機版的使用是「上下」對照的喔！");
+                alert("歡迎使用「杉林國中」課表交查查詢系統手機版，手機版的使用是「上下」對照的喔！");        
+                $("#foo").css("display","none");
                 $(".teacherList > ul > li > a ").removeAttr("href");
+                
 
             }
             $("#foo").css("display","none");
