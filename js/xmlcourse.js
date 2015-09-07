@@ -542,9 +542,10 @@ function _$(i) {
 
             if ($(window).width() <= 720) {
                 // is mobile device
-                alert("歡迎使用「杉林國中」課表交查查詢系統手機版，手機版的使用是「上下」對照的喔！");        
                 $("#foo").css("display","none");
                 $(".teacherList > ul > li > a ").removeAttr("href");
+                alert("歡迎使用「杉林國中」課表交查查詢系統手機版，手機版的使用是「上下」對照的喔！");        
+                
                 
 
             }
