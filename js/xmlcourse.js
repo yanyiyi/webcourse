@@ -86,7 +86,7 @@ function _$(i) {
                     var endTime = $(this).children("endTime").text();
                     var endMin = $(this).children("endMin").text();
                         
-                        $(".t"+(i+1)+"0").html(newSec+"<br><span class='time'>"+startTime+":"+startMin+"-"+endTime+":"+endMin+"</span>");
+                        $(".t"+(i+1)+"0").html(newSec+"<br><span class='time'>"+startTime+":"+startMin+"<br>-"+endTime+":"+endMin+"</span>");
                         
                         if( (i+1) == 5 && startTime >= 12) $(".t6r.lunchtime").css("display","none");
                         else if((i+1) == 5) $(".t5r.lunchtime").css("display","none");
@@ -403,10 +403,13 @@ function _$(i) {
                     });
                 }
 
-                $(".loadall").text(total);
-                $(".percent").text(i+"/");
+
                 
             });
+
+        },
+        complete: function (xml) {
+               
             //                console.log(secCount);
             if (secCount <= 7) secCount = 7;
             for (var i = secCount + 1; i <= 12; i++) {
@@ -531,21 +534,16 @@ function _$(i) {
                 }); //end of ajax
             }
 
-            $("#oneTable").css("display", "block");
-            $("#twoTable").css("display", "block");
-            $("#foo").css("display","none");
-            
             if ($(window).width() <= 720) {
                 // is mobile device
                 
                 $(".teacherList > ul > li > a ").removeAttr("href");
-                
+//                alert("歡迎使用「杉林國中」課表交查查詢系統手機版，手機版的使用是「上下」對照的喔！");        
                 
             }
-
-            
-
-            
+            $("#oneTable").css("display", "block");
+            $("#twoTable").css("display", "block");
+            $("#foo").css("display","none");
         }
      
     });
