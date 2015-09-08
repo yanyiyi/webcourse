@@ -384,7 +384,7 @@ function _$(i) {
 
                         if (className == val && aryPara["room1"] == classRoom[val]) {
                             if (cc5 == 0) $("#oneTable h1").append(classRoom[val]);
-                            $("#oneTable ." + whichClass).append("<span class='cname'><a href='./?course2=" + _$(className) + "&amp;room1=" + _$(aryPara["room1"]) + "'>" + className + "</a></span><br><span class='tname'><a href='./?teacher2ID=" + _$(classTeacher) + "&room1=" + _$(aryPara["room1"]) + "'>" + classTeacher + "</a></span><br><span class='tname classMark'><a href='./class2ID=" + _$(Cclass) + "&room1=" + _$(aryPara["room1"]) + "'>(" + Cclass + ")</a></span><br>");
+                            $("#oneTable ." + whichClass).append("<span class='cname'><a href='./?course2=" + _$(className) + "&room1=" + _$(aryPara["room1"]) + "'>" + className + "</a></span><br><span class='tname'><a href='./?teacher2ID=" + _$(classTeacher) + "&room1=" + _$(aryPara["room1"]) + "'>" + classTeacher + "</a></span><br><span class='tname classMark'><a href='./class2ID=" + _$(Cclass) + "&room1=" + _$(aryPara["room1"]) + "'>(" + Cclass + ")</a></span><br>");
                             cc5++;
                         }
 
@@ -531,17 +531,19 @@ function _$(i) {
                 }); //end of ajax
             }
 
+            $("#oneTable").css("display", "block");
+            $("#twoTable").css("display", "block");
             $("#foo").css("display","none");
+            
             if ($(window).width() <= 720) {
                 // is mobile device
                 
                 $(".teacherList > ul > li > a ").removeAttr("href");
-                alert("歡迎使用「杉林國中」課表交查查詢系統手機版，手機版的使用是「上下」對照的喔！");        
+                
                 
             }
 
-            $("#oneTable").css("display", "block");
-            $("#twoTable").css("display", "block");
+            
 
             
         }
