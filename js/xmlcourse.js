@@ -19,7 +19,11 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //THE SOFTWARE.
-
+            if ($(window).width() <= 720) {
+                // is mobile device 
+                $(".teacherList > ul > li > a ").removeAttr("href");
+//                alert("歡迎使用「杉林國中」課表交查查詢系統手機版，手機版的使用是「上下」對照的喔！");         
+            }
 function _$(i) {
         var j = encodeURIComponent(i);
         return j;
@@ -534,13 +538,7 @@ function _$(i) {
                 }); //end of ajax
             }
 
-            if ($(window).width() <= 720) {
-                // is mobile device
-                
-                $(".teacherList > ul > li > a ").removeAttr("href");
-//                alert("歡迎使用「杉林國中」課表交查查詢系統手機版，手機版的使用是「上下」對照的喔！");        
-                
-            }
+
             $("#oneTable").css("display", "block");
             $("#twoTable").css("display", "block");
             $("#foo").css("display","none");
