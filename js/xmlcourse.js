@@ -86,7 +86,7 @@ function _$(i) {
                     var endTime = $(this).children("endTime").text();
                     var endMin = $(this).children("endMin").text();
                         
-                        $(".t"+(i+1)+"0").html(newSec+"<br><span class='time'>"+startTime+":"+startMin+"<br>-"+endTime+":"+endMin+"</span>");
+                        $(".t"+(i+1)+"0").html(newSec+"<br><span class='time'>"+startTime+":"+startMin+"-"+endTime+":"+endMin+"</span>");
                         
                         if( (i+1) == 5 && startTime >= 12) $(".t6r.lunchtime").css("display","none");
                         else if((i+1) == 5) $(".t5r.lunchtime").css("display","none");
