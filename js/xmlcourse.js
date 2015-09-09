@@ -19,11 +19,7 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //THE SOFTWARE.
-            if ($(window).width() <= 720) {
-                // is mobile device 
-                $(".teacherList > ul > li > a ").removeAttr("href");
-//                alert("歡迎使用「杉林國中」課表交查查詢系統手機版，手機版的使用是「上下」對照的喔！");         
-            }
+
 function _$(i) {
         var j = encodeURIComponent(i);
         return j;
@@ -71,83 +67,6 @@ function _$(i) {
     if (aryPara["class2ID"] == "undefined") aryPara["class2ID"] = "";
     if (aryPara["teacherID"] == "undefined") aryPara["teacherID"] = "";
     if (aryPara["teacher2ID"] == "undefined") aryPara["teacher2ID"] = "";
-
-   $.ajax({
-        url: './section.xml',
-                type: 'GET',
-                dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
-                timeout: 1000,
-                error: function (xml) {
-                    
-                },
-                success: function (xml) {
-                    //alert("教室對應表找到了，採用對應模式");  
-                    $(xml).find("section").each(function (i) { //取得xml父節點  
-                    var sec = $(this).children("section").text();
-                    var newSec = $(this).children("newSec").text();
-                    var startTime = $(this).children("startTime").text();
-                    var startMin = $(this).children("startMin").text();
-                    var endTime = $(this).children("endTime").text();
-                    var endMin = $(this).children("endMin").text();
-                        
-                        $(".t"+(i+1)+"0").html(newSec+"<br><span class='time'>"+startTime+":"+startMin+"<br>-"+endTime+":"+endMin+"</span>");
-                        
-                        if( (i+1) == 5 && startTime >= 12) $(".t6r.lunchtime").css("display","none");
-                        else if((i+1) == 5) $(".t5r.lunchtime").css("display","none");
-                 
-                    if( (i+1) == 9 && startTime >= 17) $(".t10r.sleeptime").css("display","none");
-                        else if((i+1) == 9) $(".t9r.sleeptime").css("display","none");
-                    });
-                }
-    });
-
-
-    $.ajax({
-        url: './Room.xml',
-        type: 'GET',
-        dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
-        timeout: 10000,
-        error: function (xml) {
-            //alert("教室對應表找不到，採用撈資料模式，煩請管理員在資料夾中放入「ClassPair.xml」！");
-            $.ajax({
-                url: './ClassRoomList.xml',
-                type: 'GET',
-                dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
-                timeout: 1000,
-                error: function (xml) {
-
-                    // alert("採用「教室資料表」找不到，煩請管理員在資料夾中放入「ClassRoomList.xml」！");
-                },
-                success: function (xml) {
-                    //alert("教室對應表找到了，採用對應模式");                 
-
-
-
-
-
-                }
-            });
-        },
-        success: function (xml) {
-
-            $(xml).find("RoomList").each(function (i) { //取得xml父節點
-                // alert("教室對應表找到了，採用對應模式");
-                var total = $(xml).find("RoomList").length; //
-                var Rid = $(this).children("Rid").text();
-                var Rori = $(this).children("RoriClass").text();
-                var Room = $(this).children("Room").text();
-
-
-                classRoom[Rori] = Room;
-
-
-
-            });
-
-
-        }
-    });
- 
 
     $.ajax({
         url: './ClassProcessing.xml',
@@ -413,13 +332,92 @@ function _$(i) {
 
         },
         complete: function (xml) {
-               
+             
+   $.ajax({
+        url: './section.xml',
+                type: 'GET',
+                dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
+                timeout: 1000,
+                error: function (xml) {
+                    
+                },
+                success: function (xml) {
+                    //alert("教室對應表找到了，採用對應模式");  
+                    $(xml).find("section").each(function (i) { //取得xml父節點  
+                    var sec = $(this).children("section").text();
+                    var newSec = $(this).children("newSec").text();
+                    var startTime = $(this).children("startTime").text();
+                    var startMin = $(this).children("startMin").text();
+                    var endTime = $(this).children("endTime").text();
+                    var endMin = $(this).children("endMin").text();
+                        
+                        $(".t"+(i+1)+"0").html(newSec+"<br><span class='time'>"+startTime+":"+startMin+"<br>-"+endTime+":"+endMin+"</span>");
+                        
+                        if( (i+1) == 5 && startTime >= 12) $(".t6r.lunchtime").css("display","none");
+                        else if((i+1) == 5) $(".t5r.lunchtime").css("display","none");
+                 
+                    if( (i+1) == 9 && startTime >= 17) $(".t10r.sleeptime").css("display","none");
+                        else if((i+1) == 9) $(".t9r.sleeptime").css("display","none");
+                    });
+                }
+    });
+
+
+    $.ajax({
+        url: './Room.xml',
+        type: 'GET',
+        dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
+        timeout: 10000,
+        error: function (xml) {
+            //alert("教室對應表找不到，採用撈資料模式，煩請管理員在資料夾中放入「ClassPair.xml」！");
+            $.ajax({
+                url: './ClassRoomList.xml',
+                type: 'GET',
+                dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
+                timeout: 1000,
+                error: function (xml) {
+
+                    // alert("採用「教室資料表」找不到，煩請管理員在資料夾中放入「ClassRoomList.xml」！");
+                },
+                success: function (xml) {
+                    //alert("教室對應表找到了，採用對應模式");                 
+
+
+
+
+
+                }
+            });
+        },
+        success: function (xml) {
+
+            $(xml).find("RoomList").each(function (i) { //取得xml父節點
+                // alert("教室對應表找到了，採用對應模式");
+                var total = $(xml).find("RoomList").length; //
+                var Rid = $(this).children("Rid").text();
+                var Rori = $(this).children("RoriClass").text();
+                var Room = $(this).children("Room").text();
+
+
+                classRoom[Rori] = Room;
+
+
+
+            });
+
+
+        }
+    });
+ 
+  
             //                console.log(secCount);
             if (secCount <= 7) secCount = 7;
             for (var i = secCount + 1; i <= 12; i++) {
                 $(".t" + i + "r").css("display", "none");
 
             }
+            
+            
             Object.getOwnPropertyNames(courseList).forEach(function (val, idx, array) {
 
 
