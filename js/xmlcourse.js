@@ -25,86 +25,17 @@ function _$(i) {
         return j;
     }
 
+function XMLreader(){
 
-    var strUrl = decodeURIComponent(location.search);
-    var getPara, ParaVal;
-    var aryPara = [];
-    var cc, cc2, cc3, cc4;
-    var secCount = 0;
-    var teacherObj = new Object();
-    var classObj = new Object();
-    var teacherObj2 = new Object();
-    var classObj2 = new Object();
-
-    var teacherList = new Object();
-    var classList = new Object();
-    var courseList = new Object();
-    var classPairList = new Object();
-
-    var classRoom = new Object();
-
-
-    cc = 0;
-    cc2 = 0;
-    cc3 = 0;
-    cc4 = 0;
-    cc5 = 0;
-    cc6 = 0;
-    if (strUrl.indexOf("?") != -1) {
-        var getSearch = strUrl.split("?");
-        getPara = getSearch[1].split("&");
-        for (i = 0; i < getPara.length; i++) {
-            ParaVal = getPara[i].split("=");
-            aryPara.push(ParaVal[0]);
-            aryPara[ParaVal[0]] = ParaVal[1];
-        }
-
-    }
-
-    if (aryPara["course2"] == "undefined") aryPara["course2"] = "";
-    if (aryPara["course"] == "undefined") aryPara["course"] = "";
-    if (aryPara["classID"] == "undefined") aryPara["classID"] = "";
-    if (aryPara["class2ID"] == "undefined") aryPara["class2ID"] = "";
-    if (aryPara["teacherID"] == "undefined") aryPara["teacherID"] = "";
-    if (aryPara["teacher2ID"] == "undefined") aryPara["teacher2ID"] = "";
-
-   $.ajax({
-        url: './section.xml',
-                type: 'GET',
-                dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
-                timeout: 1000,
-                error: function (xml) {
-                    
-                },
-                success: function (xml) {
-                    //alert("教室對應表找到了，採用對應模式");  
-                    $(xml).find("section").each(function (i) { //取得xml父節點  
-                    var sec = $(this).children("section").text();
-                    var newSec = $(this).children("newSec").text();
-                    var startTime = $(this).children("startTime").text();
-                    var startMin = $(this).children("startMin").text();
-                    var endTime = $(this).children("endTime").text();
-                    var endMin = $(this).children("endMin").text();
-                        
-                        $(".t"+(i+1)+"0").html(newSec+"<br><span class='time'>"+startTime+":"+startMin+"<br>|<br>"+endTime+":"+endMin+"</span>");
-                        
-                        if( (i+1) == 5 && startTime >= 12) $(".t6r.lunchtime").css("display","none");
-                        else if((i+1) == 5) $(".t5r.lunchtime").css("display","none");
-                 
-                    if( (i+1) == 9 && startTime >= 17) $(".t10r.sleeptime").css("display","none");
-                        else if((i+1) == 9) $(".t9r.sleeptime").css("display","none");
-                    });
-                }
-    });
-
-
-    $.ajax({
+$.ajax({
         url: './Room.xml',
         type: 'GET',
         dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
         timeout: 10000,
         error: function (xml) {
             //alert("教室對應表找不到，採用撈資料模式，煩請管理員在資料夾中放入「ClassPair.xml」！");
+            
+            
             $.ajax({
                 url: './ClassRoomList.xml',
                 type: 'GET',
@@ -116,9 +47,6 @@ function _$(i) {
                 },
                 success: function (xml) {
                     //alert("教室對應表找到了，採用對應模式");                 
-
-
-
 
 
                 }
@@ -145,8 +73,52 @@ function _$(i) {
     });
  
 
+
+
+    var strUrl = decodeURIComponent(location.search);
+    var getPara, ParaVal;
+    var aryPara = [];
+    var cc, cc2, cc3, cc4;
+    var secCount = 0;
+    var teacherObj = new Object();
+    var classObj = new Object();
+    var teacherObj2 = new Object();
+    var classObj2 = new Object();
+
+    var teacherList = new Object();
+    var classList = new Object();
+    var courseList = new Object();
+    var classPairList = new Object();
+    var CateON = false;
+    var classRoom = new Object();
+    var CateCourse = new Object();
+    var CateNameList = new Object();
+    cc = 0;
+    cc2 = 0;
+    cc3 = 0;
+    cc4 = 0;
+    cc5 = 0;
+    cc6 = 0;
+    if (strUrl.indexOf("?") != -1) {
+        var getSearch = strUrl.split("?");
+        getPara = getSearch[1].split("&");
+        for (i = 0; i < getPara.length; i++) {
+            ParaVal = getPara[i].split("=");
+            aryPara.push(ParaVal[0]);
+            aryPara[ParaVal[0]] = ParaVal[1];
+        }
+
+    }
+
+    if (aryPara["course2"] == "undefined") aryPara["course2"] = "";
+    if (aryPara["course"] == "undefined") aryPara["course"] = "";
+    if (aryPara["classID"] == "undefined") aryPara["classID"] = "";
+    if (aryPara["class2ID"] == "undefined") aryPara["class2ID"] = "";
+    if (aryPara["teacherID"] == "undefined") aryPara["teacherID"] = "";
+    if (aryPara["teacher2ID"] == "undefined") aryPara["teacher2ID"] = "";
+    
     $.ajax({
-        url: './OtherSchool/ClassProcessing_longer.xml',
+        url: './ClassProcessing.xml',
         type: 'GET',
         dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html_
         timeout: 10000,
@@ -384,7 +356,7 @@ function _$(i) {
 
                         if (className == val && aryPara["room1"] == classRoom[val]) {
                             if (cc5 == 0) $("#oneTable h1").append(classRoom[val]);
-                            $("#oneTable ." + whichClass).append("<span class='cname'><a href='./?course2=" + _$(className) + "&amp;room1=" + _$(aryPara["room1"]) + "'>" + className + "</a></span><br><span class='tname'><a href='./?teacher2ID=" + _$(classTeacher) + "&room1=" + _$(aryPara["room1"]) + "'>" + classTeacher + "</a></span><br><span class='tname classMark'><a href='./class2ID=" + _$(Cclass) + "&room1=" + _$(aryPara["room1"]) + "'>(" + Cclass + ")</a></span><br>");
+                            $("#oneTable ." + whichClass).append("<span class='cname'><a href='./?course2=" + _$(className) + "&room1=" + _$(aryPara["room1"]) + "'>" + className + "</a></span><br><span class='tname'><a href='./?teacher2ID=" + _$(classTeacher) + "&room1=" + _$(aryPara["room1"]) + "'>" + classTeacher + "</a></span><br><span class='tname classMark'><a href='./class2ID=" + _$(Cclass) + "&room1=" + _$(aryPara["room1"]) + "'>(" + Cclass + ")</a></span><br>");
                             cc5++;
                         }
 
@@ -403,19 +375,19 @@ function _$(i) {
                     });
                 }
 
-                $(".loadall").text(total);
-                $(".percent").text(i+"/");
+
                 
             });
-            //                console.log(secCount);
-            if (secCount <= 7) secCount = 7;
-            for (var i = secCount + 1; i <= 12; i++) {
-                $(".t" + i + "r").css("display", "none");
 
-            }
-            Object.getOwnPropertyNames(courseList).forEach(function (val, idx, array) {
-
-
+        },
+        complete: function (xml) {
+    $.ajax({
+        url: './Category.xml',
+                type: 'GET',
+                dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
+                timeout: 1000,
+                error: function (xml) {
+                   Object.getOwnPropertyNames(courseList).forEach(function (val, idx, array) {
 
                 $(".one .teacherList > ul").append("<li onClick='' class='tcList" + val + "'><a href='./?course=" + _$(val) + "&class2ID=" + _$(aryPara["class2ID"]) + "&teacher2ID=" + _$(aryPara["teacher2ID"]) + "'>" + val + "</a><ul></ul></li>");
                 $(".two .teacherList > ul").append("<li onClick='' class='tcList" + val + "'><a href='./?course2=" + _$(val) + "&classID=" + aryPara["classID"] + "&teacherID=" + aryPara["teacherID"] + "'>" + val + "</a><ul></ul></li>");
@@ -424,11 +396,53 @@ function _$(i) {
 
                 $(".two .courseList > ul").append("<li><a href='./?course2=" + _$(val) + "&classID=" + aryPara["classID"] + "&teacherID=" + aryPara["teacherID"] + "&course=" + aryPara["course"] + "'>" + val + "</a><ul></ul></li>");
                 if (val.substr(0, 1) == "補") $(".tcList" + val).css("display", "none");
-            });
+            });  
+  
+  
+                },
+        
+                success: function (xml) {
+                  CateON = true;
+                                    $(xml).find("CateList").each(function (i) {
+                                        
+                     var courseName = $(this).children("courseName").text(); 
+                      var cateName = $(this).children("cateName").text(); 
+                       
+                    CateCourse[courseName] = cateName;
+                    
+                    if (CateNameList[cateName] != null) CateNameList[cateName] = 1 ; else CateNameList[cateName]++;                
+                                        
+                                        
+                   });
 
 
 
+                    Object.getOwnPropertyNames(CateNameList).forEach(function (val, idx, array) {
 
+                $(".one .teacherList > ul").append("<li class='cX"+val+"'>" + val + "<ul></ul></li>");
+                $(".two .teacherList > ul").append("<li class='cX"+val+"'>" + val + "<ul></ul></li>");
+
+                $(".one .courseList > ul").append("<li class='cX"+val+"'>" + val + "<ul></ul></li>");
+
+                $(".two .courseList > ul").append("<li class='cX"+val+"'>" + val + "<ul></ul></li>");
+ 
+                                });
+
+Object.getOwnPropertyNames(courseList).forEach(function (val, idx, array) {
+
+                $(".one .teacherList > ul > .cX"+CateCourse[val]+" > ul").append("<li onClick='' class='tcList" + val + "'><a href='./?course=" + _$(val) + "&class2ID=" + _$(aryPara["class2ID"]) + "&teacher2ID=" + _$(aryPara["teacher2ID"]) + "'>" + val + "</a><ul></ul></li>");
+                $(".two .teacherList > ul > .cX"+CateCourse[val]+" > ul").append("<li onClick='' class='tcList" + val + "'><a href='./?course2=" + _$(val) + "&classID=" + aryPara["classID"] + "&teacherID=" + aryPara["teacherID"] + "'>" + val + "</a><ul></ul></li>");
+
+                $(".one .courseList > ul > .cX"+CateCourse[val]+" > ul").append("<li><a href='./?course=" + _$(val) + "&class2ID=" + _$(aryPara["class2ID"]) + "&teacher2ID=" + _$(aryPara["teacher2ID"]) + "&course2=" + aryPara["course"] + "'>" + val + "</a><ul></ul></li>");
+
+                $(".two > .courseList > ul > .cX"+CateCourse[val]+" > ul").append("<li><a href='./?course2=" + _$(val) + "&classID=" + aryPara["classID"] + "&teacherID=" + aryPara["teacherID"] + "&course=" + aryPara["course"] + "'>" + val + "</a><ul></ul></li>");
+                if (val.substr(0, 1) == "補") $(".tcList" + val).css("display", "none");
+            });  
+                    
+                                        
+                },
+        
+            complete: function (xml) {
             Object.getOwnPropertyNames(classPairList).forEach(function (val, idx, array) {
                 var nTec = val.length;
                 nTec = val.substring(0, nTec - 1);
@@ -438,6 +452,46 @@ function _$(i) {
                 $(".two .tcList" + classPairList[val] + " > ul").append("<li><a href='./?teacher2ID=" + _$(nTec) + "&classID=" + aryPara["classID"] + "&course=" + aryPara["course"] + "&teacherID=" + aryPara["teacherID"] + " '>" + nTec + "</li>");
 
             });
+        }
+    });  
+            
+   $.ajax({
+        url: './section.xml',
+                type: 'GET',
+                dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
+                timeout: 1000,
+                error: function (xml) {
+                    
+                },
+                success: function (xml) {
+                    //alert("教室對應表找到了，採用對應模式");  
+                    $(xml).find("section").each(function (i) { //取得xml父節點  
+                    var sec = $(this).children("section").text();
+                    var newSec = $(this).children("newSec").text();
+                    var startTime = $(this).children("startTime").text();
+                    var startMin = $(this).children("startMin").text();
+                    var endTime = $(this).children("endTime").text();
+                    var endMin = $(this).children("endMin").text();
+                        
+                        $(".t"+(i+1)+"0").html(newSec+"<br><span class='time'>"+startTime+":"+startMin+"<br>-"+endTime+":"+endMin+"</span>");
+                        
+                        if( (i+1) == 5 && startTime >= 12) $(".t6r.lunchtime").css("display","none");
+                        else if((i+1) == 5) $(".t5r.lunchtime").css("display","none");
+                 
+                    if( (i+1) == 9 && startTime >= 17) $(".t10r.sleeptime").css("display","none");
+                        else if((i+1) == 9) $(".t9r.sleeptime").css("display","none");
+                    });
+                }
+    });
+            //                console.log(secCount);
+            if (secCount <= 7) secCount = 7;
+            for (var i = secCount + 1; i <= 12; i++) {
+                $(".t" + i + "r").css("display", "none");
+
+            }
+            
+     
+
 
             function whichGrade(i) {
                 var gClass = 0;
@@ -503,7 +557,7 @@ function _$(i) {
             if (aryPara["course"] != null || aryPara["course"] != "") {
                 Object.getOwnPropertyNames(teacherObj).forEach(function (val, idx, array) {
                     //console.log(val + ' -> ' + teacherObj[val]);
-                    $("#oneTable td").append("<span class='disable tName" + val + "'><a href='./?teacher2ID=" + _$(val) + "&classID=" + aryPara["classID"] + "&course=" + aryPara["course"] + " '>" + val + "</a></span><br>");
+                    $("#oneTable td").append("<span class='disable tName" + val + "'><a href='./?teacher2ID=" + _$(val) + "&classID=" + _$(aryPara["classID"]) + "&course=" + _$(aryPara["course"]) + " '>" + val + "</a></span><br>");
 
 
 
@@ -511,7 +565,7 @@ function _$(i) {
                     $("#oneTable .tName" + val + " .tName" + val).addClass("tname");
 
                     for (var i in classObj) {
-                        $("#oneTable .tName" + val + i + " .tName" + val).append("<br><span class='classMark'><a href='./?class2ID=" + _$(i) + "&classID=" + aryPara["classID"] + "&course=" + aryPara["course"] + "&teacherID=" + aryPara["teacher"] + " '>(" + i + ")</span>");
+                        $("#oneTable .tName" + val + i + " .tName" + val).append("<br><span class='classMark'><a href='./?class2ID=" + _$(i) + "&classID=" + _$(aryPara["classID"]) + "&course=" + _$(aryPara["course"]) + "&teacherID=" + _$(aryPara["teacher"]) + " '>(" + i + ")</span>");
 
                     }
                 });
@@ -531,24 +585,10 @@ function _$(i) {
                 }); //end of ajax
             }
 
-            function secCountUpate() {
-                if (whichSec > secCount) {
-                    secCount = whichSec;
-                }
-            }
 
             $("#oneTable").css("display", "block");
             $("#twoTable").css("display", "block");
-
-            if ($(window).width() <= 720) {
-                // is mobile device
-                alert("歡迎使用「杉林國中」課表交查查詢系統手機版，手機版的使用是「上下」對照的喔！");
-                $(".teacherList > ul > li > a ").removeAttr("href");
-
-            }
-            $("#foo").css("display","none");
+            $("#foo").remove();
         }
-
-            
     });
-
+}

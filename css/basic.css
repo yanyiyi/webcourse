@@ -106,6 +106,7 @@ ul,li{
     position: fixed;
     width: 100%;
     background-color: rgba(0,0,0,0.5);
+    background-image: url(../img/bk.png);
     top: 0px;
     
 }
