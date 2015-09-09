@@ -25,6 +25,56 @@ function _$(i) {
         return j;
     }
 
+function XMLreader(){
+
+$.ajax({
+        url: './Room.xml',
+        type: 'GET',
+        dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
+        timeout: 10000,
+        error: function (xml) {
+            //alert("教室對應表找不到，採用撈資料模式，煩請管理員在資料夾中放入「ClassPair.xml」！");
+            $.ajax({
+                url: './ClassRoomList.xml',
+                type: 'GET',
+                dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
+                timeout: 1000,
+                error: function (xml) {
+
+                    // alert("採用「教室資料表」找不到，煩請管理員在資料夾中放入「ClassRoomList.xml」！");
+                },
+                success: function (xml) {
+                    //alert("教室對應表找到了，採用對應模式");                 
+
+
+
+
+
+                }
+            });
+        },
+        success: function (xml) {
+
+            $(xml).find("RoomList").each(function (i) { //取得xml父節點
+                // alert("教室對應表找到了，採用對應模式");
+                var total = $(xml).find("RoomList").length; //
+                var Rid = $(this).children("Rid").text();
+                var Rori = $(this).children("RoriClass").text();
+                var Room = $(this).children("Room").text();
+
+
+                classRoom[Rori] = Room;
+
+
+
+            });
+
+
+        }
+    });
+ 
+  
+
 
     var strUrl = decodeURIComponent(location.search);
     var getPara, ParaVal;
@@ -361,55 +411,6 @@ function _$(i) {
                     });
                 }
     });
-
-
-    $.ajax({
-        url: './Room.xml',
-        type: 'GET',
-        dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
-        timeout: 10000,
-        error: function (xml) {
-            //alert("教室對應表找不到，採用撈資料模式，煩請管理員在資料夾中放入「ClassPair.xml」！");
-            $.ajax({
-                url: './ClassRoomList.xml',
-                type: 'GET',
-                dataType: 'xml', //資料型態可以不設定，且此型態不可是text或html
-                timeout: 1000,
-                error: function (xml) {
-
-                    // alert("採用「教室資料表」找不到，煩請管理員在資料夾中放入「ClassRoomList.xml」！");
-                },
-                success: function (xml) {
-                    //alert("教室對應表找到了，採用對應模式");                 
-
-
-
-
-
-                }
-            });
-        },
-        success: function (xml) {
-
-            $(xml).find("RoomList").each(function (i) { //取得xml父節點
-                // alert("教室對應表找到了，採用對應模式");
-                var total = $(xml).find("RoomList").length; //
-                var Rid = $(this).children("Rid").text();
-                var Rori = $(this).children("RoriClass").text();
-                var Room = $(this).children("Room").text();
-
-
-                classRoom[Rori] = Room;
-
-
-
-            });
-
-
-        }
-    });
- 
-  
             //                console.log(secCount);
             if (secCount <= 7) secCount = 7;
             for (var i = secCount + 1; i <= 12; i++) {
@@ -539,8 +540,7 @@ function _$(i) {
 
             $("#oneTable").css("display", "block");
             $("#twoTable").css("display", "block");
-            $("#foo").css("display","none");
+            $("#foo").remove();
         }
-     
     });
-
+}
